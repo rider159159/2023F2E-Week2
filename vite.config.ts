@@ -8,6 +8,7 @@ import { createRequire } from 'node:module';
 const require = createRequire( import.meta.url );
 // https://vitejs.dev/config/
 export default defineConfig({
+  // base: '/2023F2E-Week2/',
   plugins: [
     vue(),
     AutoImport({
