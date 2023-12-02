@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Banner: typeof import('./src/components/section/Banner.vue')['default']
     BarChat: typeof import('./src/components/BarChat.vue')['default']
+    Dropdown: typeof import('./src/components/Dropdown.vue')['default']
     GroupBarChat: typeof import('./src/components/GroupBarChat.vue')['default']
     LineChat: typeof import('./src/components/LineChat.vue')['default']
     MYFooter: typeof import('./src/components/layout/MYFooter.vue')['default']
