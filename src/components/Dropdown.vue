@@ -91,7 +91,7 @@ onUnmounted(() => {
         class="pl-2 bg-transparent flex items-center"
         @click="toggleMenu"
       >
-        <p class="mr-4">
+        <p class="mr-4 break-keep">
           {{ state.buttonText }}
         </p>
         <img

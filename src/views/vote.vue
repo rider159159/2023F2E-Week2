@@ -1,6 +1,8 @@
 <script setup>
 import * as d3 from 'd3'
 import vote2020 from '@/assets/vote2020.json'
+import vote2016 from '@/assets/vote2016.json'
+
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
 import { numberWithCommas, voteRate } from '@/utils/share/methods'
 
@@ -36,10 +38,14 @@ function leftRoundedRect(x, y, width, height, radius) {
 }
 
 function getData() {
-  const q = route.query || ''
+  const q = route.query.q || ''
+  console.log( q )
   switch (String(q)) {
     case '2020':
       voteData.value = vote2020
+      break
+    case '2016':
+      voteData.value = vote2016
       break
     default:
       voteData.value = vote2020
@@ -125,7 +131,7 @@ onMounted(() => {
   <main>
     <MyHeader />
     <div class="flex mt-66px">
-      <TaiwanMap />
+      <TaiwanMap :voteData="voteData"/>
       <section class="w-full px-48px">
         <h2 class="font-bold text-28px pt-32px pb-12px">
           全臺縣市總統得票

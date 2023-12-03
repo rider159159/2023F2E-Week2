@@ -6,7 +6,13 @@ import taiwanMap from '@/assets/COUNTY_MOI_1090820.json'
 import vote2020 from '@/assets/vote2020.json'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
 let selectedCounty
-const cityList = vote2020.city
+
+const props = defineProps({
+  voteData: { type: Object, default: vote2020 },
+});
+
+
+// const cityList = vote2020.city
 const width = 400;
 const height = 800;
 
@@ -24,7 +30,7 @@ const paths = g.selectAll('path').data(geometries.features)
 const map = ref()
 // 尋找指定縣市返回縣市顏色
 function findLargestParty(cityName) {
-  const cityData = cityList.find(city => city.City === cityName)
+  const cityData = cityList.value.find(city => city.City === cityName)
 
   if (!cityData)
     return '#000' // 如果找不到城市，返回 null
@@ -130,6 +136,10 @@ async function drawChart() {
 
   map.value.appendChild(svg.node());
 }
+
+const cityList = computed(() => {
+  return props.voteData.city
+})
 
 onMounted(() => {
   drawChart()

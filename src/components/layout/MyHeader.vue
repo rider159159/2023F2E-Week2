@@ -5,8 +5,26 @@ import taiwanCityJSON from '@/assets/taiwanCity.json'
 
 const store = searchStore()
 const { SEARCH_YEAR, SEARCH_CITY, SEARCH_CITY_TOWN } = storeToRefs(store)
-
 const taiwanCityList = ref()
+const dropdownList = ref([
+  {
+    label: "2020",
+    value: "2020",
+  },
+  {
+    label: "2016",
+    value: "2016",
+  },
+  {
+    label: "2012",
+    value: "2012",
+  },
+  {
+    label: "2008",
+    value: "2008",
+  },
+])
+
 
 function makeJson() {
   taiwanCityList.value = taiwanCityJSON.map((item) => {
@@ -39,24 +57,7 @@ onMounted(() => {
       <p class="text-primary font-bold mr-4">
         選擇年分
       </p>
-      <select v-model="SEARCH_YEAR" class="bg-#E9ECEF py-2 px-4 rounded-50px mr-4">
-        <option selected value="2020">
-          2020
-        </option>
-        <option value="2016">
-          2016
-        </option>
-        <option value="2012">
-          2012
-        </option>
-        <option value="2008">
-          2008
-        </option>
-        <option value="2004">
-          2004
-        </option>
-      </select>
-
+      <Dropdown v-model="SEARCH_YEAR" :items="dropdownList"></Dropdown>
       <!-- 城市/鄉鎮選單 -->
       <div class="flex items-center rounded-50px bg-#E9ECEF relative w-400px h-42px py-2">
         <div class="flex absolute">
