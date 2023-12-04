@@ -2,14 +2,16 @@
 import * as d3 from 'd3'
 import vote2020 from '@/assets/vote2020.json'
 import vote2016 from '@/assets/vote2016.json'
-
+import { searchStore } from '@/stores'
+import { storeToRefs } from 'pinia'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
 import { numberWithCommas, voteRate } from '@/utils/share/methods'
+const store = searchStore()
+const { SEARCH_YEAR } = storeToRefs(store)
 
 const subgroups = ['KMT', 'PFP', 'DPP']
 const route = useRoute()
 const borderRadius = 5 // 這是你想要的 border-radius 大小
-
 const voteData = ref(vote2020)
 
 const color = d3.scaleOrdinal()
@@ -37,10 +39,9 @@ function leftRoundedRect(x, y, width, height, radius) {
        }z`
 }
 
-function getData() {
-  const q = route.query.q || ''
-  console.log( q )
-  switch (String(q)) {
+function getData(params) {
+  console.log(String(params) === '2016')
+  switch (String(params)) {
     case '2020':
       voteData.value = vote2020
       break
@@ -121,8 +122,16 @@ const checkVote = computed(() => {
   return null
 })
 
+watch(SEARCH_YEAR, (newValue, oldValue) => {
+  if(oldValue!==newValue){
+    getData(newValue)
+    drawBarChart(voteData.value.count)
+  }
+})
+
 onMounted(() => {
-  getData()
+  const q = route.query.q || ''
+  getData(q)
   drawBarChart(voteData.value.count)
 })
 </script>
@@ -255,13 +264,13 @@ onMounted(() => {
             <h3 class="text-20px font-bold px-4 pt-6">
               歷屆政黨得票數
             </h3>
-            <GroupBarChat />
+            <GroupBarChart />
           </div>
           <div class="b b-#DEE2E6 rounded-12px overflow-auto scrollbar">
             <h3 class="text-20px font-bold px-4 pt-6">
               歷屆政黨得票率
             </h3>
-            <LineChat />
+            <LineChart />
           </div>
         </div>
         <!-- 各區域投票總攬 -->
@@ -269,7 +278,7 @@ onMounted(() => {
           <h3 class="text-20px font-bold pt-6 mb-2">
             各縣市投票總覽
           </h3>
-          <TableChart />
+          <TableChart :voteData="voteData" />
         </div>
       </section>
     </div>

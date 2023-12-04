@@ -101,13 +101,13 @@ onUnmounted(() => {
           alt=""
         />
       </button>
-      <img
+      <!-- <img
         v-if="state.buttonText !== props.title"
         src="/close.svg"
         class="w-3 cursor-pointer"
         alt=""
         @click="closeButtonText"
-      />
+      /> -->
     </div>
 
     <div

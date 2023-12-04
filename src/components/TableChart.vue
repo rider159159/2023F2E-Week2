@@ -2,10 +2,16 @@
 import { onMounted, ref } from 'vue'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
 import * as d3 from 'd3'
-import voteJSON2020 from '@/assets/vote2020.json'
+import vote2020 from '@/assets/vote2020.json'
 import { numberWithCommas, voteRate } from '@/utils/share/methods'
 
-const processedData = voteJSON2020.city
+const props = defineProps({
+  voteData: { type: Object, default: vote2020 },
+});
+
+const voteDataRef = toRef(props, 'voteData')
+
+// const processedData = vote2020.city
 const borderRadius = 5 // 這是你想要的 border-radius 大小
 
 const subgroups = ['KMT','PFP', 'DPP']
@@ -13,10 +19,23 @@ const color = d3.scaleOrdinal()
   .domain(subgroups)
   .range([KMTColor, PFPColor, DPPColor])
 
-onMounted(() => {
-  processedData.forEach((item, index) => {
+
+function renderTableChart() {
+  voteDataRef.value.city.forEach((item, index) => {
+    d3.select(`#chart-${index}`).selectAll("*").remove();
+  })
+  
+  voteDataRef.value.city.forEach((item, index) => {
     drawBarChart(item, `chart-${index}`)
   })
+}
+
+watch(voteDataRef, () => {
+  renderTableChart()
+})
+
+onMounted(() => {
+  renderTableChart()
 })
 
 function rightRoundedRect(x, y, width, height, radius) {
@@ -92,8 +111,8 @@ function drawBarChart(data, chartId) {
 }
 
 const checkVote = computed(() => {
-  if (voteJSON2020.count) {
-    const { PFP, KMT, DPP } = voteJSON2020.count
+  if (voteDataRef.value.count) {
+    const { PFP, KMT, DPP } = voteDataRef.value.count
     let maxParty = 'PFP' // 預設為 PFP
     let maxValue = PFP
     if (KMT > maxValue) {
@@ -133,7 +152,7 @@ const checkVote = computed(() => {
         </tr>
       </thead>
       <tbody>
-        <tr class="border-b border-#DEE2E6 last:border-0" v-for="(item, index) in processedData" :key="index">
+        <tr class="border-b border-#DEE2E6 last:border-0" v-for="(item, index) in voteDataRef.city" :key="index">
           <td class="py-10px pl-2 font-bold text-#334155">{{ item.City }}</td>
           <td class="chart-cell">
             <svg :id="`chart-${index}`" class="bar-chart" />

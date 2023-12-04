@@ -11,6 +11,7 @@ const props = defineProps({
   voteData: { type: Object, default: vote2020 },
 });
 
+const voteDataRef = toRef(props, 'voteData');
 
 // const cityList = vote2020.city
 const width = 400;
@@ -100,7 +101,6 @@ function zoomed(event) {
 
 // 繪製地圖
 async function drawChart() {
-
   // 創建新的 SVG 元素
   svg.attr("viewBox", [0, 0, width, height])
     .attr("width", width)
@@ -137,8 +137,21 @@ async function drawChart() {
   map.value.appendChild(svg.node());
 }
 
-const cityList = computed(() => {
-  return props.voteData.city
+
+const cityList = computed({
+  // getter
+  get() {
+    return props.voteData.city
+  },
+})
+
+function resetChart() {
+  g.selectAll('*').remove(); // 移除 g 元素內的所有子元素
+}
+
+watch(voteDataRef, () => {
+  resetChart()
+  drawChart()
 })
 
 onMounted(() => {
