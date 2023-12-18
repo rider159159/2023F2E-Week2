@@ -55,8 +55,8 @@ function getData(params) {
 }
 
 function drawBarChart(data) {
-  const width = 420 // Set the width for the bar chart
-  const height = 20 // Set the height for each bar chart
+const width = 420 // Set the width for the bar chart
+const height = 20 // Set the height for each bar chart
 
   const svg = d3.select(`#totalChart`)
     .attr('width', width)
