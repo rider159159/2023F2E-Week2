@@ -72,9 +72,9 @@ function drawChart(element, data) {
     .rangeRound([height, 0])
 
   const z = d3.scaleOrdinal()
-    .range([ KMTColor, PFPColor, DPPColor])
+    .range([KMTColor, PFPColor, DPPColor])
 
-  const keys = ['KMT','PFP', 'DPP']
+  const keys = ['KMT', 'PFP', 'DPP']
 
   x0.domain(data.map(d => d.Year))
   x1.domain(keys).rangeRound([0, x0.bandwidth()])

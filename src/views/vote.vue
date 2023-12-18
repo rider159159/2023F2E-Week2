@@ -1,11 +1,12 @@
 <script setup>
 import * as d3 from 'd3'
+import { storeToRefs } from 'pinia'
 import vote2020 from '@/assets/vote2020.json'
 import vote2016 from '@/assets/vote2016.json'
 import { searchStore } from '@/stores'
-import { storeToRefs } from 'pinia'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
 import { numberWithCommas, voteRate } from '@/utils/share/methods'
+
 const store = searchStore()
 const { SEARCH_YEAR } = storeToRefs(store)
 
@@ -55,8 +56,8 @@ function getData(params) {
 }
 
 function drawBarChart(data) {
-const width = 420 // Set the width for the bar chart
-const height = 20 // Set the height for each bar chart
+  const width = 420 // Set the width for the bar chart
+  const height = 20 // Set the height for each bar chart
 
   const svg = d3.select(`#totalChart`)
     .attr('width', width)
@@ -123,7 +124,7 @@ const checkVote = computed(() => {
 })
 
 watch(SEARCH_YEAR, (newValue, oldValue) => {
-  if(oldValue!==newValue){
+  if (oldValue !== newValue) {
     getData(newValue)
     drawBarChart(voteData.value.count)
   }
@@ -140,7 +141,7 @@ onMounted(() => {
   <main>
     <MyHeader />
     <div class="flex mt-66px">
-      <TaiwanMap :voteData="voteData"/>
+      <TaiwanMap :vote-data="voteData" />
       <section class="w-full px-48px">
         <h2 class="font-bold text-28px pt-32px pb-12px">
           全臺縣市總統得票
@@ -278,7 +279,7 @@ onMounted(() => {
           <h3 class="text-20px font-bold pt-6 mb-2">
             各縣市投票總覽
           </h3>
-          <TableChart :voteData="voteData" />
+          <TableChart :vote-data="voteData" />
         </div>
       </section>
     </div>

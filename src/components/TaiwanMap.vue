@@ -1,26 +1,26 @@
 <script setup>
 import * as d3 from 'd3'
-import { geoMercator, geoPath } from 'd3-geo'
-import { feature, mesh } from 'topojson-client'
+import { feature } from 'topojson-client'
 import taiwanMap from '@/assets/COUNTY_MOI_1090820.json'
 import vote2020 from '@/assets/vote2020.json'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
-let selectedCounty
 
 const props = defineProps({
   voteData: { type: Object, default: vote2020 },
-});
+})
 
-const voteDataRef = toRef(props, 'voteData');
+let selectedCounty
+
+const voteDataRef = toRef(props, 'voteData')
 
 // const cityList = vote2020.city
-const width = 400;
-const height = 800;
+const width = 400
+const height = 800
 
 const path = d3.geoPath()
 const zoom = d3.zoom()
-const svg = d3.create("svg")
-const g = svg.append("g");
+const svg = d3.create('svg')
+const g = svg.append('g')
 
 const projectmethod = d3.geoMercator().center([122.7, 24]).scale(8500)
 const pathGenerator = path.projection(projectmethod)
@@ -69,7 +69,7 @@ function clicked(event, d) {
     // 如果點擊的是同一個縣市，則不進行放大
     return
   }
-  const [[x0, y0], [x1, y1]] = path.bounds(d);
+  const [[x0, y0], [x1, y1]] = path.bounds(d)
   selectedCounty = d.properties.COUNTYNAME
 
   const { scale, translate } = calculateZoomView(d, width, height)
@@ -93,22 +93,21 @@ function clicked(event, d) {
 }
 
 function zoomed(event) {
-  const {transform} = event;
-  g.attr("transform", transform);
-  g.attr("stroke-width", 1 / transform.k);
+  const { transform } = event
+  g.attr('transform', transform)
+  g.attr('stroke-width', 1 / transform.k)
 }
-
 
 // 繪製地圖
 async function drawChart() {
   // 創建新的 SVG 元素
-  svg.attr("viewBox", [0, 0, width, height])
-    .attr("width", width)
-    .attr("height", height)
-    .attr("style", "max-width: 100%; height: auto;")
+  svg.attr('viewBox', [0, 0, width, height])
+    .attr('width', width)
+    .attr('height', height)
+    .attr('style', 'max-width: 100%; height: auto;')
 
   zoom.scaleExtent([1, 8])
-    .on("zoom", zoomed)
+    .on('zoom', zoomed)
 
   paths.enter()
     .append('path')
@@ -132,11 +131,10 @@ async function drawChart() {
     .style('text-anchor', 'middle') // 確保文字居中對齊
 
     .text((d) => { return d.properties.COUNTYNAME })
-    svg.call(zoom);
+  svg.call(zoom)
 
-  map.value.appendChild(svg.node());
+  map.value.appendChild(svg.node())
 }
-
 
 const cityList = computed({
   // getter
@@ -146,7 +144,7 @@ const cityList = computed({
 })
 
 function resetChart() {
-  g.selectAll('*').remove(); // 移除 g 元素內的所有子元素
+  g.selectAll('*').remove() // 移除 g 元素內的所有子元素
 }
 
 watch(voteDataRef, () => {
@@ -161,12 +159,11 @@ onMounted(() => {
 
 <template>
   <section class="flex bg-#BDBDBD">
-    <div ref="map" class="bg-#E4FAFF min-w-400px h-800px"></div>
+    <div ref="map" class="bg-#E4FAFF min-w-400px h-800px" />
   </section>
 </template>
 
 <style>
-
 .custom_tooltip {
   position: absolute;
   text-align: left;

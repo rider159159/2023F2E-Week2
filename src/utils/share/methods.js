@@ -1,6 +1,6 @@
 export function voteRate(valid, total) {
-  let result = valid / total * 100;
-  return (result.toFixed(2)) % 1 === 0 ? Math.floor(result) : result.toFixed(2);
+  const result = valid / total * 100
+  return (result.toFixed(2)) % 1 === 0 ? Math.floor(result) : result.toFixed(2)
 }
 
 // 計算千分位

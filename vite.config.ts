@@ -1,11 +1,15 @@
+import path from 'node:path'
+import { createRequire } from 'node:module'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import path from 'path'
-import AutoImport from 'unplugin-auto-import/vite' // 自動導入 hook
-import Components from 'unplugin-vue-components/vite' // 自動引入 components
-import Unocss from 'unocss/vite';
-import { createRequire } from 'node:module';
-const require = createRequire( import.meta.url );
+import AutoImport from 'unplugin-auto-import/vite'
+
+// 自動導入 hook
+import Components from 'unplugin-vue-components/vite'
+
+// 自動引入 components
+import Unocss from 'unocss/vite'
+const require = createRequire(import.meta.url)
 // https://vitejs.dev/config/
 export default defineConfig({
   // base: '/2023F2E-Week2/',
@@ -14,10 +18,11 @@ export default defineConfig({
     AutoImport({
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-        /\.vue$/, /\.vue\?vue/, // .vue
+        /\.vue$/,
+        /\.vue\?vue/, // .vue
         /\.md$/, // .md
       ],
-      imports: ['vue','vue-router'],
+      imports: ['vue', 'vue-router'],
       eslintrc: {
         enabled: false,
       },
@@ -30,7 +35,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
-    }
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
 })
