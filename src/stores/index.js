@@ -5,3 +5,4 @@ export function setupStore(AppInstance) {
   AppInstance.use(store)
 }
 export * from './searchStore'
+export * from './mapStore'

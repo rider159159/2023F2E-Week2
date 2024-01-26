@@ -1,8 +1,9 @@
+<!-- 第一份 -->
 <script setup>
 import * as d3 from 'd3'
 import { feature } from 'topojson-client'
-import taiwanMap from '@/assets/COUNTY_MOI_1090820.json'
-import vote2020 from '@/assets/vote2020.json'
+import taiwanMap from '@/assets/GeoData/COUNTY_MOI_1090820.json'
+import vote2020 from '@/assets/Vote/vote2020.json'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
 
 const props = defineProps({
@@ -29,6 +30,14 @@ const pathGenerator = path.projection(projectmethod)
 const geometries = feature(taiwanMap, taiwanMap.objects.COUNTY_MOI_1090820)
 const paths = g.selectAll('path').data(geometries.features)
 const map = ref()
+
+const cityList = computed({
+  // getter
+  get() {
+    return props.voteData.city
+  },
+})
+
 // 尋找指定縣市返回縣市顏色
 function findLargestParty(cityName) {
   const cityData = cityList.value.find(city => city.City === cityName)
@@ -72,7 +81,7 @@ function clicked(event, d) {
   const [[x0, y0], [x1, y1]] = path.bounds(d)
   selectedCounty = d.properties.COUNTYNAME
 
-  const { scale, translate } = calculateZoomView(d, width, height)
+  calculateZoomView(d, width, height)
   // 拉近相關
 
   svg.transition().duration(750).call(
@@ -135,13 +144,6 @@ async function drawChart() {
 
   map.value.appendChild(svg.node())
 }
-
-const cityList = computed({
-  // getter
-  get() {
-    return props.voteData.city
-  },
-})
 
 function resetChart() {
   g.selectAll('*').remove() // 移除 g 元素內的所有子元素

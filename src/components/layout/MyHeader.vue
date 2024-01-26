@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { searchStore } from '@/stores'
-import taiwanCityJSON from '@/assets/taiwanCity.json'
+import taiwanCityJSON from '@/assets/City/taiwanCity.json'
 
 const store = searchStore()
 const { SEARCH_YEAR, SEARCH_CITY, SEARCH_CITY_TOWN } = storeToRefs(store)

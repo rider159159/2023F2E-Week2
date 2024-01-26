@@ -2,7 +2,7 @@
 import { onMounted } from 'vue'
 import * as d3 from 'd3'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
-import vote2020 from '@/assets/vote2020.json'
+import vote2020 from '@/assets/Vote/vote2020.json'
 import { numberWithCommas, voteRate } from '@/utils/share/methods'
 
 const props = defineProps({

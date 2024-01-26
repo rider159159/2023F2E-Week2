@@ -9,16 +9,18 @@ declare module 'vue' {
   export interface GlobalComponents {
     Banner: typeof import('./src/components/section/Banner.vue')['default']
     BarChat: typeof import('./src/components/BarChat.vue')['default']
-    County: typeof import('./src/components/section/County.vue')['default']
+    County: typeof import('./src/components/Map/County.vue')['default']
     Dropdown: typeof import('./src/components/Dropdown.vue')['default']
     GroupBarChart: typeof import('./src/components/GroupBarChart.vue')['default']
     LineChart: typeof import('./src/components/LineChart.vue')['default']
     MYFooter: typeof import('./src/components/layout/MYFooter.vue')['default']
     MyHeader: typeof import('./src/components/layout/MyHeader.vue')['default']
+    NewTest: typeof import('./src/components/section/newTest.vue')['default']
     ProgressBar: typeof import('./src/components/ProgressBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TableChart: typeof import('./src/components/TableChart.vue')['default']
     TaiwanMap: typeof import('./src/components/TaiwanMap.vue')['default']
+    Town: typeof import('./src/components/Map/Town.vue')['default']
   }
 }
