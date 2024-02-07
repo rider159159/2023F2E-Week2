@@ -66,6 +66,10 @@ const y = computed(() => (feature) => {
   return (bounds[0][1] + bounds[1][1]) / 2
 })
 
+const transform = computed(() => (feature) => {
+  return `translate(${pathGenerator.centroid(feature)})`
+})
+
 onMounted (() => {
   // const svg = document.querySelector('.svg')
   // zoom = d3.zoom()
@@ -84,9 +88,11 @@ onMounted (() => {
         :fill="findLargestParty(item.properties.county)"
         @click="targetCounty = item.properties.county_en"
       />
+      <!-- :transform="transform(item)" -->
+
       <text
-        :x="x(item)"
         :y="y(item)"
+        :x="x(item)"
         class="county-name"
       >
         {{ item.properties.county }}
