@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import townGeoData from '@/assets/GeoData/townGeoData.json'
-import Vote2020 from '@/assets/Vote/2020.json'
+import Vote from '@/assets/Vote/2020.json'
 import { mapStore } from '@/stores'
 import { pathGenerator } from '@/utils/d3'
 import { removeSpace } from '@/utils'
@@ -28,8 +28,13 @@ const computedPath = computed(() => {
 
 // 返回城市顏色
 function findLargestParty(item) {
-  const { candidate1, candidate2, candidate3 } = Vote2020[removeSpace(item.properties.town_en)].detail.all
-  console.log(item.properties.town_en)
+  const town = removeSpace(item.properties.town_en)
+  const county = removeSpace(item.properties.county_en)
+  const { candidate1, candidate2, candidate3 } = Vote[county].detail[town]
+  // TODO:  candidate1.votes 可比政黨大小
+  console.log(candidate1,candidate2,Vote[county].detail[town])
+
+  // console.log(Vote,item.properties.county_en.)
   // const cityData = cityList.value.find(city => city.City === cityName)
 
   // if (!cityData)
@@ -51,6 +56,7 @@ function findLargestParty(item) {
 </script>
 
 <template>
+
   <g v-if="targetCountyData.length > 0" class="town">
     <g v-for="item in targetCountyData" :key="item.id" class="cursor-pointer">
       <path
