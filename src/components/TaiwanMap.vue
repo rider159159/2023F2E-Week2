@@ -134,7 +134,6 @@ async function drawChart() {
     .append('text')
     .attr('class', 'county-name')
     .attr('transform', (d) => {
-      console.log(d)
       return `translate(${pathGenerator.centroid(d)})` // 將文字定位在每個縣市的地理中心點
     })
     .attr('dy', '.35em') // 輕微垂直調整以改善位置

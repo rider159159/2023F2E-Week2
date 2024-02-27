@@ -11,6 +11,7 @@ const props = defineProps({
   voteData: { type: Object, default: vote2020 },
   svg: { type: Object },
 })
+const emits = defineEmits(['setCountyEmit'])
 
 const map = mapStore()
 const { targetCounty } = storeToRefs(map)
@@ -66,16 +67,36 @@ const y = computed(() => (feature) => {
   return (bounds[0][1] + bounds[1][1]) / 2
 })
 
-const transform = computed(() => (feature) => {
-  return `translate(${pathGenerator.centroid(feature)})`
-})
+// const transform = computed(() => (feature) => {
+//   return `translate(${pathGenerator.centroid(feature)})`
+// })
+
+function setTargetCounty(item) {
+  const bounds = pathGenerator.bounds(item.geometry)
+  emits('setCountyEmit', {
+    county_en: item.properties.county_en,
+    bounds,
+  })
+}
+
+// function setMapCenter() {
+//   const bounds = pathGenerator.bounds(item.geometry)
+//   console.log(bounds)
+//   const dx = bounds[1][0] - bounds[0][0]
+//   const dy = bounds[1][1] - bounds[0][1]
+
+//   const x = (bounds[0][0] + bounds[1][0]) / 2
+//   const y = (bounds[0][1] + bounds[1][1]) / 2
+//   const scale = 0.9 / Math.max(dx / 300, dy / 400)
+//   const translate = [300 / 2 - scale * x, 400 / 2 - scale * y]
+//   select(gRef.current)
+//     .transition()
+//     .duration(750)
+//     .attr('transform', `translate(${translate}) scale(${scale})`)
+// }
 
 onMounted (() => {
-  // const svg = document.querySelector('.svg')
-  // zoom = d3.zoom()
-  //   .scaleExtent([1, 8])
-  //   .on('zoom', zoomed)
-  // d3.select(svg).call(zoom)
+
 })
 </script>
 
@@ -86,22 +107,22 @@ onMounted (() => {
       <path
         :d="computedPath(item)"
         :fill="findLargestParty(item.properties.county)"
-        @click="targetCounty = item.properties.county_en"
+        @click="setTargetCounty(item)"
       />
-      <!-- :transform="transform(item)" -->
-
       <text
+        v-if="targetCounty.length === 0"
         :y="y(item)"
         :x="x(item)"
         class="county-name"
       >
         {{ item.properties.county }}
       </text>
+      <!-- :transform="transform(item)" -->
     </g>
   </g>
 </template>
 
-<style>
+<style scoped>
 .county-name {
     font-size: 6px;
     fill: #fff;
