@@ -16,7 +16,7 @@ const voteDataRef = toRef(props, 'voteData')
 
 // const cityList = vote2020.city
 const width = 400
-const height = 800
+const height = 600
 
 const path = d3.geoPath()
 const zoom = d3.zoom()

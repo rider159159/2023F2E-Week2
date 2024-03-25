@@ -27,6 +27,14 @@ const router = createRouter({
         keepAlive: false,
       },
     },
+    {
+      path: '/update',
+      name: 'update',
+      component: () => import('../views/update.vue'),
+      meta: {
+        keepAlive: false,
+      },
+    },
   ],
 })
 

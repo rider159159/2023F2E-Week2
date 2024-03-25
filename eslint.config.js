@@ -5,6 +5,7 @@ export default antfu(
     ignores: [
       'assets/*',
       'public/*',
+      'views/update.vue',
     ],
     rules: {
       'node/prefer-global/process': 'off',

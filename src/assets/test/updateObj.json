@@ -1,0 +1,1294 @@
+{
+  "all": {
+    "fieldCN": "總計",
+    "fieldEn": "all",
+    "id": "1",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 41075
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 339702
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 786471
+    },
+    "validVotes": 1167248,
+    "invalidVotes": 12341,
+    "votes": 1179589,
+    "unUseVotes": 22,
+    "publishedVotes": 1179611,
+    "leftVotes": 377234,
+    "allVotes": 1556845,
+    "voteRate": 75.7679
+  },
+  "XinyingDistrict": {
+    "fieldCN": "新營區",
+    "fieldEn": "Xinying District",
+    "id": "2",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 1720
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 15517
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 28969
+    },
+    "validVotes": 46206,
+    "invalidVotes": 548,
+    "votes": 46754,
+    "unUseVotes": 0,
+    "publishedVotes": 46754,
+    "leftVotes": 15797,
+    "allVotes": 62551,
+    "voteRate": 74.7454
+  },
+  "YanshuiDistrict": {
+    "fieldCN": "鹽水區",
+    "fieldEn": "Yanshui District",
+    "id": "3",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 427
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 4021
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 11099
+    },
+    "validVotes": 15547,
+    "invalidVotes": 185,
+    "votes": 15732,
+    "unUseVotes": 0,
+    "publishedVotes": 15732,
+    "leftVotes": 5889,
+    "allVotes": 21621,
+    "voteRate": 72.7626
+  },
+  "BaiheDistrict": {
+    "fieldCN": "白河區",
+    "fieldEn": "Baihe District",
+    "id": "4",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 454
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 4611
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 11831
+    },
+    "validVotes": 16896,
+    "invalidVotes": 194,
+    "votes": 17090,
+    "unUseVotes": 1,
+    "publishedVotes": 17091,
+    "leftVotes": 6981,
+    "allVotes": 24072,
+    "voteRate": 70.9953
+  },
+  "LiouyingDistrict": {
+    "fieldCN": "柳營區",
+    "fieldEn": "Liouying District",
+    "id": "5",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 487
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 3578
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 9457
+    },
+    "validVotes": 13522,
+    "invalidVotes": 175,
+    "votes": 13697,
+    "unUseVotes": 3,
+    "publishedVotes": 13700,
+    "leftVotes": 4649,
+    "allVotes": 18349,
+    "voteRate": 74.6471
+  },
+  "HoubiDistrict": {
+    "fieldCN": "後壁區",
+    "fieldEn": "Houbi District",
+    "id": "6",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 447
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 3822
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 10335
+    },
+    "validVotes": 14604,
+    "invalidVotes": 173,
+    "votes": 14777,
+    "unUseVotes": 0,
+    "publishedVotes": 14777,
+    "leftVotes": 5331,
+    "allVotes": 20108,
+    "voteRate": 73.4882
+  },
+  "DongshanDistrict": {
+    "fieldCN": "東山區",
+    "fieldEn": "Dongshan District",
+    "id": "7",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 356
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 3638
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 7940
+    },
+    "validVotes": 11934,
+    "invalidVotes": 130,
+    "votes": 12064,
+    "unUseVotes": 0,
+    "publishedVotes": 12064,
+    "leftVotes": 5796,
+    "allVotes": 17860,
+    "voteRate": 67.5476
+  },
+  "MadouDistrict": {
+    "fieldCN": "麻豆區",
+    "fieldEn": "Madou District",
+    "id": "8",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 767
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 5883
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 21670
+    },
+    "validVotes": 28320,
+    "invalidVotes": 290,
+    "votes": 28610,
+    "unUseVotes": 1,
+    "publishedVotes": 28611,
+    "leftVotes": 8213,
+    "allVotes": 36824,
+    "voteRate": 77.6939
+  },
+  "XiayingDistrict": {
+    "fieldCN": "下營區",
+    "fieldEn": "Xiaying District",
+    "id": "9",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 434
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 3987
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 10333
+    },
+    "validVotes": 14754,
+    "invalidVotes": 168,
+    "votes": 14922,
+    "unUseVotes": 0,
+    "publishedVotes": 14922,
+    "leftVotes": 5387,
+    "allVotes": 20309,
+    "voteRate": 73.4748
+  },
+  "LiujiaDistrict": {
+    "fieldCN": "六甲區",
+    "fieldEn": "Liujia District",
+    "id": "10",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 442
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 3243
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 9686
+    },
+    "validVotes": 13371,
+    "invalidVotes": 141,
+    "votes": 13512,
+    "unUseVotes": 0,
+    "publishedVotes": 13512,
+    "leftVotes": 4929,
+    "allVotes": 18441,
+    "voteRate": 73.2715
+  },
+  "GuantianDistrict": {
+    "fieldCN": "官田區",
+    "fieldEn": "Guantian District",
+    "id": "11",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 384
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 3186
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 10140
+    },
+    "validVotes": 13710,
+    "invalidVotes": 132,
+    "votes": 13842,
+    "unUseVotes": 0,
+    "publishedVotes": 13842,
+    "leftVotes": 4454,
+    "allVotes": 18296,
+    "voteRate": 75.6559
+  },
+  "DaneiDistrict": {
+    "fieldCN": "大內區",
+    "fieldEn": "Danei District",
+    "id": "12",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 192
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 1643
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 4249
+    },
+    "validVotes": 6084,
+    "invalidVotes": 68,
+    "votes": 6152,
+    "unUseVotes": 0,
+    "publishedVotes": 6152,
+    "leftVotes": 2178,
+    "allVotes": 8330,
+    "voteRate": 73.8535
+  },
+  "JialiDistrict": {
+    "fieldCN": "佳里區",
+    "fieldEn": "Jiali District",
+    "id": "13",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 1171
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 9486
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 26071
+    },
+    "validVotes": 36728,
+    "invalidVotes": 359,
+    "votes": 37087,
+    "unUseVotes": 0,
+    "publishedVotes": 37087,
+    "leftVotes": 12009,
+    "allVotes": 49096,
+    "voteRate": 75.5398
+  },
+  "XuejiaDistrict": {
+    "fieldCN": "學甲區",
+    "fieldEn": "Xuejia District",
+    "id": "14",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 446
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 3581
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 11857
+    },
+    "validVotes": 15884,
+    "invalidVotes": 152,
+    "votes": 16036,
+    "unUseVotes": 0,
+    "publishedVotes": 16036,
+    "leftVotes": 5933,
+    "allVotes": 21969,
+    "voteRate": 72.9938
+  },
+  "XigangDistrict": {
+    "fieldCN": "西港區",
+    "fieldEn": "Xigang District",
+    "id": "15",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 452
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 3445
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 11836
+    },
+    "validVotes": 15733,
+    "invalidVotes": 181,
+    "votes": 15914,
+    "unUseVotes": 0,
+    "publishedVotes": 15914,
+    "leftVotes": 5061,
+    "allVotes": 20975,
+    "voteRate": 75.8713
+  },
+  "QiguDistrict": {
+    "fieldCN": "七股區",
+    "fieldEn": "Qigu District",
+    "id": "16",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 397
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 3173
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 10229
+    },
+    "validVotes": 13799,
+    "invalidVotes": 136,
+    "votes": 13935,
+    "unUseVotes": 0,
+    "publishedVotes": 13935,
+    "leftVotes": 5373,
+    "allVotes": 19308,
+    "voteRate": 72.1722
+  },
+  "JiangjunDistrict": {
+    "fieldCN": "將軍區",
+    "fieldEn": "Jiangjun District",
+    "id": "17",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 274
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 2525
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 9156
+    },
+    "validVotes": 11955,
+    "invalidVotes": 121,
+    "votes": 12076,
+    "unUseVotes": 0,
+    "publishedVotes": 12076,
+    "leftVotes": 5104,
+    "allVotes": 17180,
+    "voteRate": 70.291
+  },
+  "BeimenDistrict": {
+    "fieldCN": "北門區",
+    "fieldEn": "Beimen District",
+    "id": "18",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 147
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 1688
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 4583
+    },
+    "validVotes": 6418,
+    "invalidVotes": 58,
+    "votes": 6476,
+    "unUseVotes": 0,
+    "publishedVotes": 6476,
+    "leftVotes": 3105,
+    "allVotes": 9581,
+    "voteRate": 67.5921
+  },
+  "XinhuaDistrict": {
+    "fieldCN": "新化區",
+    "fieldEn": "Xinhua District",
+    "id": "19",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 1000
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 8446
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 18092
+    },
+    "validVotes": 27538,
+    "invalidVotes": 250,
+    "votes": 27788,
+    "unUseVotes": 0,
+    "publishedVotes": 27788,
+    "leftVotes": 8476,
+    "allVotes": 36264,
+    "voteRate": 76.627
+  },
+  "ShanhuaDistrict": {
+    "fieldCN": "善化區",
+    "fieldEn": "Shanhua District",
+    "id": "20",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 1021
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 7582
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 21514
+    },
+    "validVotes": 30117,
+    "invalidVotes": 326,
+    "votes": 30443,
+    "unUseVotes": 0,
+    "publishedVotes": 30443,
+    "leftVotes": 9332,
+    "allVotes": 39775,
+    "voteRate": 76.538
+  },
+  "XinshiDistrict": {
+    "fieldCN": "新市區",
+    "fieldEn": "Xinshi District",
+    "id": "21",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 774
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 5612
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 16535
+    },
+    "validVotes": 22921,
+    "invalidVotes": 224,
+    "votes": 23145,
+    "unUseVotes": 0,
+    "publishedVotes": 23145,
+    "leftVotes": 6901,
+    "allVotes": 30046,
+    "voteRate": 77.0319
+  },
+  "AndingDistrict": {
+    "fieldCN": "安定區",
+    "fieldEn": "Anding District",
+    "id": "22",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 600
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 4706
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 13995
+    },
+    "validVotes": 19301,
+    "invalidVotes": 222,
+    "votes": 19523,
+    "unUseVotes": 0,
+    "publishedVotes": 19523,
+    "leftVotes": 5911,
+    "allVotes": 25434,
+    "voteRate": 76.7595
+  },
+  "ShanshangDistrict": {
+    "fieldCN": "山上區",
+    "fieldEn": "Shanshang District",
+    "id": "23",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 139
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 1285
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 3148
+    },
+    "validVotes": 4572,
+    "invalidVotes": 51,
+    "votes": 4623,
+    "unUseVotes": 0,
+    "publishedVotes": 4623,
+    "leftVotes": 1665,
+    "allVotes": 6288,
+    "voteRate": 73.521
+  },
+  "YujingDistrict": {
+    "fieldCN": "玉井區",
+    "fieldEn": "Yujing District",
+    "id": "24",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 280
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 3452
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 4645
+    },
+    "validVotes": 8377,
+    "invalidVotes": 99,
+    "votes": 8476,
+    "unUseVotes": 0,
+    "publishedVotes": 8476,
+    "leftVotes": 3437,
+    "allVotes": 11913,
+    "voteRate": 71.1492
+  },
+  "NanxiDistrict": {
+    "fieldCN": "楠西區",
+    "fieldEn": "Nanxi District",
+    "id": "25",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 167
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 2769
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 2725
+    },
+    "validVotes": 5661,
+    "invalidVotes": 64,
+    "votes": 5725,
+    "unUseVotes": 0,
+    "publishedVotes": 5725,
+    "leftVotes": 2455,
+    "allVotes": 8180,
+    "voteRate": 69.9878
+  },
+  "NanhuaDistrict": {
+    "fieldCN": "南化區",
+    "fieldEn": "Nanhua District",
+    "id": "26",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 162
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 2136
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 2897
+    },
+    "validVotes": 5195,
+    "invalidVotes": 46,
+    "votes": 5241,
+    "unUseVotes": 0,
+    "publishedVotes": 5241,
+    "leftVotes": 2284,
+    "allVotes": 7525,
+    "voteRate": 69.6478
+  },
+  "ZuozhenDistrict": {
+    "fieldCN": "左鎮區",
+    "fieldEn": "Zuozhen District",
+    "id": "27",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 70
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 927
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 1861
+    },
+    "validVotes": 2858,
+    "invalidVotes": 31,
+    "votes": 2889,
+    "unUseVotes": 0,
+    "publishedVotes": 2889,
+    "leftVotes": 1361,
+    "allVotes": 4250,
+    "voteRate": 67.9765
+  },
+  "RendeDistrict": {
+    "fieldCN": "仁德區",
+    "fieldEn": "Rende District",
+    "id": "28",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 1836
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 14785
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 32224
+    },
+    "validVotes": 48845,
+    "invalidVotes": 523,
+    "votes": 49368,
+    "unUseVotes": 4,
+    "publishedVotes": 49372,
+    "leftVotes": 14034,
+    "allVotes": 63406,
+    "voteRate": 77.8601
+  },
+  "GuirenDistrict": {
+    "fieldCN": "歸仁區",
+    "fieldEn": "Guiren District",
+    "id": "29",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 1455
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 11285
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 30450
+    },
+    "validVotes": 43190,
+    "invalidVotes": 441,
+    "votes": 43631,
+    "unUseVotes": 0,
+    "publishedVotes": 43631,
+    "leftVotes": 12156,
+    "allVotes": 55787,
+    "voteRate": 78.21
+  },
+  "GuanmiaoDistrict": {
+    "fieldCN": "關廟區",
+    "fieldEn": "Guanmiao District",
+    "id": "30",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 729
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 6082
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 15780
+    },
+    "validVotes": 22591,
+    "invalidVotes": 199,
+    "votes": 22790,
+    "unUseVotes": 0,
+    "publishedVotes": 22790,
+    "leftVotes": 6439,
+    "allVotes": 29229,
+    "voteRate": 77.9705
+  },
+  "LongqiDistrict": {
+    "fieldCN": "龍崎區",
+    "fieldEn": "Longqi District",
+    "id": "31",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 96
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 876
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 1693
+    },
+    "validVotes": 2665,
+    "invalidVotes": 29,
+    "votes": 2694,
+    "unUseVotes": 0,
+    "publishedVotes": 2694,
+    "leftVotes": 919,
+    "allVotes": 3613,
+    "voteRate": 74.5641
+  },
+  "YongkangDistrict": {
+    "fieldCN": "永康區",
+    "fieldEn": "Yongkang District",
+    "id": "32",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 5562
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 44565
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 93745
+    },
+    "validVotes": 143872,
+    "invalidVotes": 1441,
+    "votes": 145313,
+    "unUseVotes": 6,
+    "publishedVotes": 145319,
+    "leftVotes": 45794,
+    "allVotes": 191113,
+    "voteRate": 76.0351
+  },
+  "EastDistrict": {
+    "fieldCN": "東區",
+    "fieldEn": "East District",
+    "id": "33",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 4461
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 41044
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 69040
+    },
+    "validVotes": 114545,
+    "invalidVotes": 1225,
+    "votes": 115770,
+    "unUseVotes": 3,
+    "publishedVotes": 115773,
+    "leftVotes": 33704,
+    "allVotes": 149477,
+    "voteRate": 77.45
+  },
+  "SouthDistrict": {
+    "fieldCN": "南區",
+    "fieldEn": "South District",
+    "id": "34",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 2790
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 23551
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 55076
+    },
+    "validVotes": 81417,
+    "invalidVotes": 835,
+    "votes": 82252,
+    "unUseVotes": 0,
+    "publishedVotes": 82252,
+    "leftVotes": 24449,
+    "allVotes": 106701,
+    "voteRate": 77.0864
+  },
+  "NorthDistrict": {
+    "fieldCN": "北區",
+    "fieldEn": "North District",
+    "id": "35",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 3215
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 26684
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 51932
+    },
+    "validVotes": 81831,
+    "invalidVotes": 870,
+    "votes": 82701,
+    "unUseVotes": 2,
+    "publishedVotes": 82703,
+    "leftVotes": 25420,
+    "allVotes": 108123,
+    "voteRate": 76.4879
+  },
+  "AnnanDistrict": {
+    "fieldCN": "安南區",
+    "fieldEn": "Annan District",
+    "id": "36",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 4307
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 29236
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 84284
+    },
+    "validVotes": 117827,
+    "invalidVotes": 1241,
+    "votes": 119068,
+    "unUseVotes": 2,
+    "publishedVotes": 119070,
+    "leftVotes": 37621,
+    "allVotes": 156691,
+    "voteRate": 75.989
+  },
+  "AnpingDistrict": {
+    "fieldCN": "安平區",
+    "fieldEn": "Anping District",
+    "id": "37",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 1523
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 12944
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 26062
+    },
+    "validVotes": 40529,
+    "invalidVotes": 437,
+    "votes": 40966,
+    "unUseVotes": 0,
+    "publishedVotes": 40966,
+    "leftVotes": 13419,
+    "allVotes": 54385,
+    "voteRate": 75.3259
+  },
+  "CentralWestDistrict": {
+    "fieldCN": "中西區",
+    "fieldEn": "Central West District",
+    "id": "38",
+    "candidate1": {
+      "id": "1",
+      "president": "宋楚瑜",
+      "vicePresident": "余湘",
+      "party": "親民黨",
+      "votes": 1891
+    },
+    "candidate2": {
+      "id": "2",
+      "president": "韓國瑜",
+      "vicePresident": "張善政",
+      "party": "中國國民黨",
+      "votes": 14708
+    },
+    "candidate3": {
+      "id": "3",
+      "president": "蔡英文",
+      "vicePresident": "賴清德",
+      "party": "民主進步黨",
+      "votes": 31332
+    },
+    "validVotes": 47931,
+    "invalidVotes": 576,
+    "votes": 48507,
+    "unUseVotes": 0,
+    "publishedVotes": 48507,
+    "leftVotes": 15268,
+    "allVotes": 63775,
+    "voteRate": 76.0596
+  }
+}

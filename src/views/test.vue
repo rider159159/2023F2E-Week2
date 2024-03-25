@@ -12,7 +12,6 @@ const g = ref(null)
 
 function zoomed(event) {
   const { transform } = event
-  console.log(transform)
   d3.select(g.value)
     .attr('transform', transform)
 }
@@ -27,18 +26,30 @@ function setCounty(item) {
 
   const x = (bounds[0][0] + bounds[1][0]) / 2
   const y = (bounds[0][1] + bounds[1][1]) / 2
-  const scale = 0.9 / Math.max(dx / 300, dy / 400)
+  const scale = 0.9 / Math.max(dx / 400, dy / 600)
 
-  // 計算可視區域的中心點
+  // 取得目前的縮放比例和平移量
   const currentTransform = d3.zoomTransform(svgElement.node())
-  const center = [400 / 2 - currentTransform.x / currentTransform.k, 800 / 2 - currentTransform.y / currentTransform.k]
+  const currentScale = currentTransform.k
+  const currentTranslateX = currentTransform.x
+  const currentTranslateY = currentTransform.y
 
-  const translate = [center[0] - scale * x, center[1] - scale * y]
+  // 考慮目前的縮放比例，計算視窗寬度和高度
+  const scaledWidth = 400 / currentScale
+  const scaledHeight = 600 / currentScale
 
-  // 設置新的平移和縮放變換
-  const newTransform = d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale)
+  // 計算中心點的座標
+  const centerX = (scaledWidth / 2) - (currentTranslateX / currentScale)
+  const centerY = (scaledHeight / 2) - (currentTranslateY / currentScale)
 
-  // 使用過渡效果實現平滑移動
+  // 根据中心点和新的缩放比例，计算平移量
+  const translateX = centerX - scale * x
+  const translateY = centerY - scale * y
+
+  // 根據中心點和新的縮放比例，計算平移量
+  const newTransform = d3.zoomIdentity.translate(translateX, translateY).scale(scale)
+
+  // 設定新的平移和縮放變換
   svgElement.transition()
     .duration(300)
     .call(zoom.transform, newTransform)
@@ -54,11 +65,14 @@ onMounted (() => {
 </script>
 
 <template>
-  <div class="bg-#E4FAFF min-w-400px h-800px">
+  <div class="bg-#E4FAFF w-400px h-600px relative">
+    <div class="absolute top-0 w-full left-0 cursor-pointer bg-white opacity-90 text-center py-2" @click="targetCounty = ''">
+      回上一步
+    </div>
     <svg
       ref="svg"
       class="h-full w-full"
-      viewBox="0,0,400,800"
+      viewBox="0,0,400,600"
     >
       <g ref="g" class="g" stroke-width="0.1">
         <County :svg="svg" @set-county-emit="setCounty" />

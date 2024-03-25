@@ -3,6 +3,8 @@ import { storeToRefs } from 'pinia'
 import { mapStore } from '@/stores'
 import { pathGenerator } from '@/utils/d3'
 import { removeSpace } from '@/utils'
+import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
+
 import townGeoData from '@/assets/GeoData/townGeoData.json'
 import Vote from '@/assets/Vote/2020.json'
 
@@ -41,15 +43,12 @@ function findLargestParty(item) {
   const town = removeSpace(item.properties.town_en)
   const county = removeSpace(item.properties.county_en)
   const { candidate1, candidate2, candidate3 } = Vote[county].detail[town]
-  // TODO:  candidate1.votes 可比政黨大小
   if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
-    return '#F4A76F'
-
+    return PFPColor
   if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
-    return '#8082FF'
-
+    return KMTColor
   if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
-    return '#57D2A9'
+    return DPPColor
 }
 </script>
 
@@ -63,6 +62,8 @@ function findLargestParty(item) {
       <text
         :x="x(item)"
         :y="y(item)"
+        text-anchor="middle"
+        dominant-baseline="middle"
         class="town-name"
       >
         {{ item.properties.town }}

@@ -2,7 +2,6 @@
 import * as d3 from 'd3'
 import { storeToRefs } from 'pinia'
 import vote2020 from '@/assets/Vote/vote2020.json'
-import vote2016 from '@/assets/Vote/vote2016.json'
 import { searchStore } from '@/stores'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
 import { numberWithCommas, voteRate } from '@/utils/share/methods'
