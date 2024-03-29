@@ -3,33 +3,58 @@
 import { storeToRefs } from 'pinia'
 import countyGeoData from '@/assets/GeoData/countyGeoData.json'
 import { pathGenerator } from '@/utils/d3'
-import vote2020 from '@/assets/Vote/vote2020.json'
-import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
-import { mapStore } from '@/stores'
+import vote2024 from '@/assets/Vote/2024.json'
+import { yearColor } from '@/utils/share/variable'
+import { mapStore, searchStore } from '@/stores'
 import { removeSpace } from '@/utils'
-import Vote from '@/assets/Vote/2020.json'
 
 const props = defineProps({
-  voteData: { type: Object, default: vote2020 },
+  voteData: { type: Object, default: vote2024 },
   svg: { type: Object },
 })
 const emits = defineEmits(['setCountyEmit'])
 
 const map = mapStore()
+const search = searchStore()
 const { targetCounty } = storeToRefs(map)
+const { SEARCH_YEAR } = storeToRefs(search)
 
-// 尋找指定縣市返回縣市顏色
-function findLargestParty(item) {
-  const county = removeSpace(item.properties.county_en)
-  console.log(Vote[county])
-  const { candidate1, candidate2, candidate3 } = Vote[county]
-  if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
-    return PFPColor
-  if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
-    return KMTColor
-  if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
-    return DPPColor
-}
+const findLargestParty = computed(() => {
+  return (item) => {
+    const { color2020, color2024 } = yearColor
+    const county = removeSpace(item.properties.county_en)
+    const { candidate1, candidate2, candidate3 } = props.voteData[county]
+
+    switch (SEARCH_YEAR.value) {
+      case '2020' :
+        if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
+          return color2020.PFPColor
+        if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
+          return color2020.KMTColor
+        if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
+          return color2020.DPPColor
+        break
+
+      case '2024' :
+        if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
+          return color2024.TPPColor
+        if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
+          return color2024.DPPColor
+        if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
+          return color2024.KMTColor
+        break
+
+      default:
+        if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
+          return color2024.TPPColor
+        if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
+          return color2024.DPPColor
+        if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
+          return color2024.KMTColor
+        break
+    }
+  }
+})
 
 const computedPath = computed(() => {
   return feature => pathGenerator(feature.geometry)

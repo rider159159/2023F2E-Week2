@@ -8,20 +8,16 @@ const { SEARCH_YEAR, SEARCH_CITY, SEARCH_CITY_TOWN } = storeToRefs(store)
 const taiwanCityList = ref()
 const dropdownList = ref([
   {
-    label: '2020',
-    value: '2020',
-  },
-  {
     label: '2016',
     value: '2016',
   },
   {
-    label: '2012',
-    value: '2012',
+    label: '2020',
+    value: '2020',
   },
   {
-    label: '2008',
-    value: '2008',
+    label: '2024',
+    value: '2024',
   },
 ])
 

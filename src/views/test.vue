@@ -2,12 +2,14 @@
 import * as d3 from 'd3'
 import { storeToRefs } from 'pinia'
 import { mapStore } from '@/stores'
+import vote2020 from '@/assets/Vote/2020.json'
+import vote2024 from '@/assets/Vote/2024.json'
 
 const map = mapStore()
 const { targetCounty } = storeToRefs(map)
 
+let zoom, svgElement
 const svg = ref()
-let zoom
 const g = ref(null)
 
 function zoomed(event) {
@@ -15,8 +17,6 @@ function zoomed(event) {
   d3.select(g.value)
     .attr('transform', transform)
 }
-
-let svgElement
 
 function setCounty(item) {
   const { county_en, bounds } = item

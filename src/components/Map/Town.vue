@@ -1,15 +1,21 @@
 <script setup>
 import { storeToRefs } from 'pinia'
-import { mapStore } from '@/stores'
+import { mapStore, searchStore } from '@/stores'
 import { pathGenerator } from '@/utils/d3'
 import { removeSpace } from '@/utils'
-import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
+import { yearColor } from '@/utils/share/variable'
 
 import townGeoData from '@/assets/GeoData/townGeoData.json'
-import Vote from '@/assets/Vote/2020.json'
+import vote2024 from '@/assets/Vote/2024.json'
+
+const props = defineProps({
+  voteData: { type: Object, default: vote2024 },
+})
 
 const map = mapStore()
+const search = searchStore()
 const { targetCounty } = storeToRefs(map)
+const { SEARCH_YEAR } = storeToRefs(search)
 
 const targetCountyData = computed(() => {
   const list = townGeoData.features.filter((item) => {
@@ -39,17 +45,42 @@ const y = computed(() => (feature) => {
 })
 
 // 返回城市顏色
-function findLargestParty(item) {
-  const town = removeSpace(item.properties.town_en)
-  const county = removeSpace(item.properties.county_en)
-  const { candidate1, candidate2, candidate3 } = Vote[county].detail[town]
-  if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
-    return PFPColor
-  if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
-    return KMTColor
-  if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
-    return DPPColor
-}
+const findLargestParty = computed(() => {
+  return (item) => {
+    const { color2020, color2024 } = yearColor
+    const county = removeSpace(item.properties.county_en)
+    const { candidate1, candidate2, candidate3 } = props.voteData[county]
+
+    switch (SEARCH_YEAR.value) {
+      case '2020' :
+        if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
+          return color2020.PFPColor
+        if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
+          return color2020.KMTColor
+        if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
+          return color2020.DPPColor
+        break
+
+      case '2024' :
+        if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
+          return color2024.TPPColor
+        if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
+          return color2024.DPPColor
+        if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
+          return color2024.KMTColor
+        break
+
+      default:
+        if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
+          return color2024.TPPColor
+        if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
+          return color2024.DPPColor
+        if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
+          return color2024.KMTColor
+        break
+    }
+  }
+})
 </script>
 
 <template>
