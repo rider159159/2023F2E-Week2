@@ -140,7 +140,10 @@ onMounted(() => {
   <main>
     <MyHeader />
     <div class="flex mt-66px">
-      <TaiwanMap :vote-data="voteData" />
+
+      <!-- <TaiwanMap :vote-data="voteData" /> -->
+      <TaiwanVoteMap />
+
       <section class="w-full px-48px">
         <h2 class="font-bold text-28px pt-32px pb-12px">
           全臺縣市總統得票

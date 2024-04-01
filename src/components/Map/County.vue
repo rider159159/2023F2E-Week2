@@ -3,13 +3,12 @@
 import { storeToRefs } from 'pinia'
 import countyGeoData from '@/assets/GeoData/countyGeoData.json'
 import { pathGenerator } from '@/utils/d3'
-import vote2024 from '@/assets/Vote/2024.json'
+
 import { yearColor } from '@/utils/share/variable'
 import { mapStore, searchStore } from '@/stores'
 import { removeSpace } from '@/utils'
 
 const props = defineProps({
-  voteData: { type: Object, default: vote2024 },
   svg: { type: Object },
 })
 const emits = defineEmits(['setCountyEmit'])
@@ -17,13 +16,13 @@ const emits = defineEmits(['setCountyEmit'])
 const map = mapStore()
 const search = searchStore()
 const { targetCounty } = storeToRefs(map)
-const { SEARCH_YEAR } = storeToRefs(search)
+const { SEARCH_YEAR, CURRENT_VOTE_DATA } = storeToRefs(search)
 
 const findLargestParty = computed(() => {
   return (item) => {
     const { color2020, color2024 } = yearColor
     const county = removeSpace(item.properties.county_en)
-    const { candidate1, candidate2, candidate3 } = props.voteData[county]
+    const { candidate1, candidate2, candidate3 } = CURRENT_VOTE_DATA.value[county]
 
     switch (SEARCH_YEAR.value) {
       case '2020' :

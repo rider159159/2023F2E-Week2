@@ -1576,21 +1576,21 @@
           "president": "柯文哲",
           "vicePresident": "吳欣盈",
           "party": "台灣民眾黨",
-          "votes": 1666
+          "votes": 413528
       },
       "candidate2": {
           "id": "2",
           "president": "賴清德",
           "vicePresident": "蕭美琴",
           "party": "民主進步黨",
-          "votes": 1434
+          "votes": 476441
       },
       "candidate3": {
           "id": "3",
           "president": "侯友宜",
           "vicePresident": "趙少康",
           "party": "中國國民黨",
-          "votes": 3222
+          "votes": 460823
       },
       "validVotes": 6322,
       "invalidVotes": 58,

@@ -20,6 +20,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     TableChart: typeof import('./src/components/TableChart.vue')['default']
     TaiwanMap: typeof import('./src/components/TaiwanMap.vue')['default']
+    TaiwanVoteMap: typeof import('./src/components/Map/TaiwanVoteMap.vue')['default']
     Town: typeof import('./src/components/Map/Town.vue')['default']
   }
 }

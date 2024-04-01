@@ -6,16 +6,12 @@ import { removeSpace } from '@/utils'
 import { yearColor } from '@/utils/share/variable'
 
 import townGeoData from '@/assets/GeoData/townGeoData.json'
-import vote2024 from '@/assets/Vote/2024.json'
 
-const props = defineProps({
-  voteData: { type: Object, default: vote2024 },
-})
 
 const map = mapStore()
 const search = searchStore()
 const { targetCounty } = storeToRefs(map)
-const { SEARCH_YEAR } = storeToRefs(search)
+const { SEARCH_YEAR, CURRENT_VOTE_DATA } = storeToRefs(search)
 
 const targetCountyData = computed(() => {
   const list = townGeoData.features.filter((item) => {
@@ -49,7 +45,7 @@ const findLargestParty = computed(() => {
   return (item) => {
     const { color2020, color2024 } = yearColor
     const county = removeSpace(item.properties.county_en)
-    const { candidate1, candidate2, candidate3 } = props.voteData[county]
+    const { candidate1, candidate2, candidate3 } = CURRENT_VOTE_DATA.value[county]
 
     switch (SEARCH_YEAR.value) {
       case '2020' :

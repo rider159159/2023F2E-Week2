@@ -14,26 +14,14 @@
       </p>
     </section>
     <div class="grid grid-cols-5 gap-6 w-924px">
-      <RouterLink to="/vote?q=1996" class="bg-gray-1 b-rounded-50px text-center p-3">
-        1996
-      </RouterLink>
-      <RouterLink to="/vote?q=2000" class="bg-gray-1 b-rounded-50px text-center p-3">
-        2000
-      </RouterLink>
-      <RouterLink to="/vote?q=2004" class="bg-gray-1 b-rounded-50px text-center p-3">
-        2004
-      </RouterLink>
-      <RouterLink to="/vote?q=2008" class="bg-gray-1 b-rounded-50px text-center p-3">
-        2008
-      </RouterLink>
-      <RouterLink to="/vote?q=2012" class="bg-gray-1 b-rounded-50px text-center p-3">
-        2012
-      </RouterLink>
       <RouterLink to="/vote?q=2016" class="bg-gray-1 b-rounded-50px text-center p-3">
         2016
       </RouterLink>
       <RouterLink to="/vote?q=2020" class="bg-gray-1 b-rounded-50px text-center p-3">
         2020
+      </RouterLink>
+      <RouterLink to="/vote?q=2020" class="bg-gray-1 b-rounded-50px text-center p-3">
+        2024
       </RouterLink>
     </div>
     <div class="w-full absolute left-0 bottom-0% grid grid-cols-6 gap-6">
