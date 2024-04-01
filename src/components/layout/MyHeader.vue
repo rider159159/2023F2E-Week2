@@ -4,13 +4,9 @@ import { searchStore } from '@/stores'
 import taiwanCityJSON from '@/assets/City/taiwanCity.json'
 
 const store = searchStore()
-const { SEARCH_YEAR, SEARCH_CITY, SEARCH_CITY_TOWN } = storeToRefs(store)
+const { SEARCH_YEAR, SEARCH_CITY, SEARCH_CITY_TOWN, TRIGGER_EVENT } = storeToRefs(store)
 const taiwanCityList = ref()
 const dropdownList = ref([
-  {
-    label: '2016',
-    value: '2016',
-  },
   {
     label: '2020',
     value: '2020',
@@ -32,6 +28,7 @@ const townsCityList = ref(
 )
 
 watch(SEARCH_CITY, () => {
+  TRIGGER_EVENT.value = 'select'
   if (SEARCH_CITY.value !== 'all') {
     const currentCity = taiwanCityJSON.filter(i => i.CityName === SEARCH_CITY.value)
     townsCityList.value = currentCity[0]?.AreaList

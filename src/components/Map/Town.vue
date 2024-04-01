@@ -1,6 +1,7 @@
+<!-- 區、鄉 -->
 <script setup>
 import { storeToRefs } from 'pinia'
-import { mapStore, searchStore } from '@/stores'
+import { searchStore } from '@/stores'
 import { pathGenerator } from '@/utils/d3'
 import { removeSpace } from '@/utils'
 import { yearColor } from '@/utils/share/variable'
@@ -12,14 +13,12 @@ const props = defineProps({
   voteData: { type: Object, default: vote2024 },
 })
 
-const map = mapStore()
-const search = searchStore()
-const { targetCounty } = storeToRefs(map)
-const { SEARCH_YEAR } = storeToRefs(search)
+const SearchStore = searchStore()
+const { SEARCH_YEAR, SEARCH_CITY } = storeToRefs(SearchStore)
 
 const targetCountyData = computed(() => {
   const list = townGeoData.features.filter((item) => {
-    return item.properties.county_en === targetCounty.value
+    return item.properties.county_en === SEARCH_CITY.value
   })
   if (list)
     return list

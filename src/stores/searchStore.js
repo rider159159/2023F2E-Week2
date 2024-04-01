@@ -5,9 +5,12 @@ export const searchStore = defineStore('search-store', () => {
   const SEARCH_YEAR = ref('2020')
   const SEARCH_CITY = ref('')
   const SEARCH_CITY_TOWN = ref('')
+  const TRIGGER_EVENT = ref('')
   return {
     SEARCH_YEAR,
     SEARCH_CITY,
     SEARCH_CITY_TOWN,
+    SEARCH_EVENT,
+    TRIGGER_EVENT,
   }
 })

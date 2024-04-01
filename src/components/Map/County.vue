@@ -1,4 +1,4 @@
-<!-- 第二份 -->
+<!-- 縣市 -->
 <script setup>
 import { storeToRefs } from 'pinia'
 import countyGeoData from '@/assets/GeoData/countyGeoData.json'
@@ -14,10 +14,8 @@ const props = defineProps({
 })
 const emits = defineEmits(['setCountyEmit'])
 
-const map = mapStore()
-const search = searchStore()
-const { targetCounty } = storeToRefs(map)
-const { SEARCH_YEAR } = storeToRefs(search)
+const SearchStore = searchStore()
+const { SEARCH_YEAR, SEARCH_CITY, TRIGGER_EVENT } = storeToRefs(SearchStore)
 
 const findLargestParty = computed(() => {
   return (item) => {
@@ -72,11 +70,25 @@ const y = computed(() => (feature) => {
 
 function setTargetCounty(item) {
   const bounds = pathGenerator.bounds(item.geometry)
+  TRIGGER_EVENT.value = 'Click'
   emits('setCountyEmit', {
     county_en: item.properties.county_en,
     bounds,
   })
 }
+
+// TODO:下拉選單觸發
+watch(SEARCH_CITY, () => {
+  if (TRIGGER_EVENT) {
+    const targetCity = countyGeoData.features.find(item => item.properties.county_en === SEARCH_CITY.value)
+    const bounds = pathGenerator.bounds(targetCity.geometry)
+
+    emits('setCountyEmit', {
+      county_en: targetCity.properties.county_en,
+      bounds,
+    })
+  }
+})
 
 onMounted (() => {
 
@@ -92,7 +104,7 @@ onMounted (() => {
         @click="setTargetCounty(item)"
       />
       <text
-        v-if="targetCounty.length === 0"
+        v-if="SEARCH_CITY.length === 0"
         :y="y(item)"
         :x="x(item)"
         text-anchor="middle"

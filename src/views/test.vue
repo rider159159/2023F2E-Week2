@@ -1,12 +1,10 @@
 <script setup>
 import * as d3 from 'd3'
 import { storeToRefs } from 'pinia'
-import { mapStore } from '@/stores'
-import vote2020 from '@/assets/Vote/2020.json'
-import vote2024 from '@/assets/Vote/2024.json'
+import { searchStore } from '@/stores'
 
-const map = mapStore()
-const { targetCounty } = storeToRefs(map)
+const SearchStore = searchStore()
+const { SEARCH_CITY } = storeToRefs(SearchStore)
 
 let zoom, svgElement
 const svg = ref()
@@ -20,7 +18,7 @@ function zoomed(event) {
 
 function setCounty(item) {
   const { county_en, bounds } = item
-  targetCounty.value = county_en
+  SEARCH_CITY.value = county_en
   const dx = bounds[1][0] - bounds[0][0]
   const dy = bounds[1][1] - bounds[0][1]
 
@@ -66,7 +64,7 @@ onMounted (() => {
 
 <template>
   <div class="bg-#E4FAFF w-400px h-600px relative">
-    <div class="absolute top-0 w-full left-0 cursor-pointer bg-white opacity-90 text-center py-2" @click="targetCounty = ''">
+    <div class="absolute top-0 w-full left-0 cursor-pointer bg-white opacity-90 text-center py-2" @click="TARGET_COUNTY = ''">
       回上一步
     </div>
     <svg
