@@ -1,18 +1,18 @@
 <script setup>
 import * as d3 from 'd3'
 import { storeToRefs } from 'pinia'
-import vote2020 from '@/assets/Vote/vote2020.json'
+
 import { searchStore } from '@/stores'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
 import { numberWithCommas, voteRate } from '@/utils/share/methods'
 
 const store = searchStore()
-const { SEARCH_YEAR } = storeToRefs(store)
+const { SEARCH_CITY, ARRAY_VOTE_DATA, CURRENT_VOTE_DATA, CURRENT_CITY_DATA } = storeToRefs(store)
 
 const subgroups = ['KMT', 'PFP', 'DPP']
 const route = useRoute()
 const borderRadius = 5 // 這是你想要的 border-radius 大小
-const voteData = ref(vote2020)
+const voteData = ref(ARRAY_VOTE_DATA)
 
 const color = d3.scaleOrdinal()
   .domain(subgroups)
@@ -20,38 +20,23 @@ const color = d3.scaleOrdinal()
 
 function rightRoundedRect(x, y, width, height, radius) {
   return `m${x},${y
-     }h${width - radius
-       }a${radius},${radius} 0 0 1 ${radius},${radius
-       }v${height - 2 * radius
-       }a${radius},${radius} 0 0 1 ${-radius},${radius
-       }h${radius - width
-       }z`
+    }h${width - radius
+    }a${radius},${radius} 0 0 1 ${radius},${radius
+    }v${height - 2 * radius
+    }a${radius},${radius} 0 0 1 ${-radius},${radius
+    }h${radius - width
+    }z`
 }
 
 function leftRoundedRect(x, y, width, height, radius) {
   return `m${x + radius},${y
-     }h${width - radius
-       }v${height
-       }h${radius - width
-       }a${radius},${radius} 0 0 1 ${-radius},${-radius
-       }v${2 * radius - height
-       }a${radius},${radius} 0 0 1 ${radius},${-radius
-       }z`
-}
-
-function getData(params) {
-  console.log(String(params) === '2016')
-  switch (String(params)) {
-    case '2020':
-      voteData.value = vote2020
-      break
-    case '2016':
-      voteData.value = vote2016
-      break
-    default:
-      voteData.value = vote2020
-      break
-  }
+    }h${width - radius
+    }v${height
+    }h${radius - width
+    }a${radius},${radius} 0 0 1 ${-radius},${-radius
+    }v${2 * radius - height
+    }a${radius},${radius} 0 0 1 ${radius},${-radius
+    }z`
 }
 
 function drawBarChart(data) {
@@ -71,7 +56,12 @@ function drawBarChart(data) {
     .keys(subgroups)
     .value((d, key) => (d[key] / d.Total) * 100) // 計算每個政黨的票數佔總票數的百分比
 
-  const layers = stackGenerator([data])
+  // const { candidate1, candidate2, candidate3 } = data
+  const chartData = { DPP: 4671021, KMT: 5586019, PFP: 3690466 }
+  const layers = stackGenerator([
+    chartData,
+  ])
+  // { "City": "總計", "PFP": 464570, "KMT": 6592534, "DPP": 9215187, "Total": 16272291 },
 
   svg.selectAll('.layer')
     .data(layers)
@@ -85,6 +75,7 @@ function drawBarChart(data) {
     .append('path')
     .attr('d', (d, i, nodes) => {
       const layer = nodes[i].parentNode.__data__ // Access the parent node's data
+      console.log(layer)
       const x0 = x(d[0])
       const x1 = x(d[1])
       const w = x1 - x0
@@ -105,34 +96,25 @@ function drawBarChart(data) {
     })
 }
 
-const checkVote = computed(() => {
-  if (voteData.value.count) {
-    const { PFP, KMT, DPP } = voteData.value.count
-    let maxParty = 'PFP' // 預設為 PFP
-    let maxValue = PFP
-    if (KMT > maxValue) {
-      maxParty = 'KMT'
-      maxValue = KMT
-    }
-    if (DPP > maxValue)
-      maxParty = 'DPP'
+// const checkVote = computed(() => {
+//   if (voteData.value.count) {
+//     const { PFP, KMT, DPP } = voteData.value.count
+//     let maxParty = 'PFP' // 預設為 PFP
+//     let maxValue = PFP
+//     if (KMT > maxValue) {
+//       maxParty = 'KMT'
+//       maxValue = KMT
+//     }
+//     if (DPP > maxValue)
+//       maxParty = 'DPP'
 
-    return maxParty
-  }
-  return null
-})
-
-watch(SEARCH_YEAR, (newValue, oldValue) => {
-  if (oldValue !== newValue) {
-    getData(newValue)
-    drawBarChart(voteData.value.count)
-  }
-})
+//     return maxParty
+//   }
+//   return null
+// })
 
 onMounted(() => {
-  const q = route.query.q || ''
-  getData(q)
-  drawBarChart(voteData.value.count)
+  drawBarChart(CURRENT_CITY_DATA.value)
 })
 </script>
 
@@ -140,7 +122,9 @@ onMounted(() => {
   <main>
     <MyHeader />
     <div class="flex mt-66px">
-      <TaiwanMap :vote-data="voteData" />
+      <!-- <TaiwanMap :vote-data="voteData" /> -->
+      <!-- <TaiwanVoteMap /> -->
+      <!-- {{ CURRENT_CITY_DATA }} -->
       <section class="w-full px-48px">
         <h2 class="font-bold text-28px pt-32px pb-12px">
           全臺縣市總統得票
@@ -148,7 +132,7 @@ onMounted(() => {
         <!-- 總統票數 -->
         <div class="bg-#F3F4F4 p-4 pt-6 rounded-12px mb-6">
           <h3 class="text-20px font-bold">
-            總統得票數
+            {{ SEARCH_CITY === 'all' ? '全台總統得票數' : `${CURRENT_CITY_DATA.fieldCN}總統得票數` }}
           </h3>
           <section class="w-full grid grid-cols-2 gap-4">
             <!-- 左側政黨 -->
@@ -164,10 +148,10 @@ onMounted(() => {
                       <p class="text-primary mr-2">
                         德古拉
                       </p>
-                      <img v-if="checkVote === 'KMT'" src="/check_circle.png" class="w-20px h-20px" alt="">
+                      <img src="/check_circle.png" class="w-20px h-20px" alt="">
                     </div>
                     <div class="text-primary">
-                      <span>{{ numberWithCommas(voteData.count.KMT) }}</span>
+                      <span>{{ numberWithCommas(CURRENT_CITY_DATA.candidate1.votes) }}</span>
                       票
                     </div>
                   </div>
@@ -182,10 +166,10 @@ onMounted(() => {
                       <p class="text-primary mr-2">
                         林克
                       </p>
-                      <img v-if="checkVote === 'PFP'" src="/check_circle.png" class="w-20px h-20px" alt="">
+                      <img src="/check_circle.png" class="w-20px h-20px" alt="">
                     </div>
                     <div class="text-primary">
-                      <span>{{ numberWithCommas(voteData.count.PFP) }}</span>
+                      <span>{{ numberWithCommas(CURRENT_CITY_DATA.candidate2.votes) }}</span>
                       票
                     </div>
                   </div>
@@ -200,10 +184,10 @@ onMounted(() => {
                       <p class="text-primary mr-2">
                         綠巨魔
                       </p>
-                      <img v-if="checkVote === 'DPP'" src="/check_circle.png" class="w-20px h-20px" alt="">
+                      <img src="/check_circle.png" class="w-20px h-20px" alt="">
                     </div>
                     <div class="text-primary">
-                      <span>{{ numberWithCommas(voteData.count.DPP) }}</span>
+                      <span>{{ numberWithCommas(CURRENT_CITY_DATA.candidate3.votes) }}</span>
                       票
                     </div>
                   </div>
@@ -214,7 +198,7 @@ onMounted(() => {
               </div>
             </div>
             <!-- 右側投票率 -->
-            <div class="overflow-auto bg-white rounded-12px flex gap-4 scrollbar">
+            <!-- <div class="overflow-auto bg-white rounded-12px flex gap-4 scrollbar">
               <ProgressBar :percentage="voteRate(voteData.count.Valid, voteData.count.Total)" />
               <div class="min-w-200px grid grid-cols-2 pt-3 pb-6 gap-6">
                 <div>
@@ -255,11 +239,12 @@ onMounted(() => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </section>
         </div>
+
         <!-- 總統票數 -->
-        <div class="w-full grid grid-cols-2 gap-4 mb-10">
+        <!-- <div class="w-full grid grid-cols-2 gap-4 mb-10">
           <div class="b b-#DEE2E6 rounded-12px overflow-auto scrollbar">
             <h3 class="text-20px font-bold px-4 pt-6">
               歷屆政黨得票數
@@ -272,14 +257,14 @@ onMounted(() => {
             </h3>
             <LineChart />
           </div>
-        </div>
+        </div> -->
         <!-- 各區域投票總攬 -->
-        <div class="overflow-x-auto scrollbar">
+        <!-- <div class="overflow-x-auto scrollbar">
           <h3 class="text-20px font-bold pt-6 mb-2">
             各縣市投票總覽
           </h3>
           <TableChart :vote-data="voteData" />
-        </div>
+        </div> -->
       </section>
     </div>
     <MYFooter />

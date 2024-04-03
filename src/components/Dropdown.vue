@@ -7,13 +7,15 @@ const props = defineProps({
   items: Array,
 })
 
-const emits = defineEmits(['update:modelValue'])
+// const emits = defineEmits(['update:modelValue'])
+const model = defineModel()
 
 const button = ref(null)
 const menu = ref(null)
+
 const state = reactive({
-  menuVisible: false,
-  buttonText: props.title, // 初始按钮文本
+  menuVisible: false, // 是否顯示按鈕
+  buttonText: props.title, // 按鈕文字
 })
 
 let popperInstance = null
@@ -63,7 +65,7 @@ function selectOption(option) {
   state.buttonText = option.label // 更新按鈕
   state.menuVisible = false // 關閉選單
   destroyPopperInstance()
-  emits('update:modelValue', option.value)
+  model.value = option.value
 }
 
 // 點擊 close 圖示，清除資料並關閉選單
@@ -73,6 +75,10 @@ function closeButtonText() {
   destroyPopperInstance()
   emits('update:modelValue', '')
 }
+
+watch(() => {
+
+})
 
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
@@ -102,13 +108,6 @@ onUnmounted(() => {
           alt=""
         >
       </button>
-      <!-- <img
-        v-if="state.buttonText !== props.title"
-        src="/close.svg"
-        class="w-3 cursor-pointer"
-        alt=""
-        @click="closeButtonText"
-      /> -->
     </div>
 
     <div

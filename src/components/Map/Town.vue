@@ -7,14 +7,9 @@ import { removeSpace } from '@/utils'
 import { yearColor } from '@/utils/share/variable'
 
 import townGeoData from '@/assets/GeoData/townGeoData.json'
-import vote2024 from '@/assets/Vote/2024.json'
-
-const props = defineProps({
-  voteData: { type: Object, default: vote2024 },
-})
 
 const SearchStore = searchStore()
-const { SEARCH_YEAR, SEARCH_CITY } = storeToRefs(SearchStore)
+const { SEARCH_YEAR, SEARCH_CITY, CURRENT_VOTE_DATA } = storeToRefs(SearchStore)
 
 const targetCountyData = computed(() => {
   const list = townGeoData.features.filter((item) => {
@@ -46,11 +41,21 @@ const y = computed(() => (feature) => {
 // 返回城市顏色
 const findLargestParty = computed(() => {
   return (item) => {
-    const { color2020, color2024 } = yearColor
+    const { color2016, color2020, color2024 } = yearColor
     const county = removeSpace(item.properties.county_en)
-    const { candidate1, candidate2, candidate3 } = props.voteData[county]
+    const town = removeSpace(item.properties.town_en)
+    const targetTown = CURRENT_VOTE_DATA.value[county].detail[town]
+    const { candidate1, candidate2, candidate3 } = targetTown
 
     switch (SEARCH_YEAR.value) {
+      case '2016' :
+        if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
+          return color2016.KMTColor
+        if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
+          return color2016.DPPColor
+        if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
+          return color2016.PFPColor
+        break
       case '2020' :
         if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
           return color2020.PFPColor

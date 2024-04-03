@@ -8,6 +8,10 @@ const { SEARCH_YEAR, SEARCH_CITY, SEARCH_CITY_TOWN, TRIGGER_EVENT } = storeToRef
 const taiwanCityList = ref()
 const dropdownList = ref([
   {
+    label: '2016',
+    value: '2016',
+  },
+  {
     label: '2020',
     value: '2020',
   },
@@ -19,7 +23,10 @@ const dropdownList = ref([
 
 function makeJson() {
   taiwanCityList.value = taiwanCityJSON.map((item) => {
-    return item.CityName
+    return {
+      fieldCN: item.CityName,
+      fieldEn: item.CityEngName,
+    }
   })
 }
 
@@ -30,13 +37,15 @@ const townsCityList = ref(
 watch(SEARCH_CITY, () => {
   TRIGGER_EVENT.value = 'select'
   if (SEARCH_CITY.value !== 'all') {
-    const currentCity = taiwanCityJSON.filter(i => i.CityName === SEARCH_CITY.value)
+    console.log(SEARCH_CITY.value, taiwanCityJSON)
+    const currentCity = taiwanCityJSON.filter(i => i.CityEngName === SEARCH_CITY.value)
     townsCityList.value = currentCity[0]?.AreaList
     SEARCH_CITY_TOWN.value = ''
   }
 })
 
 onMounted(() => {
+  SEARCH_YEAR.value = '2024'
   SEARCH_CITY.value = 'all'
   makeJson()
 })
@@ -49,7 +58,7 @@ onMounted(() => {
       <p class="text-primary font-bold mr-4">
         選擇年分
       </p>
-      <Dropdown v-model="SEARCH_YEAR" :items="dropdownList" />
+      <Dropdown v-model="SEARCH_YEAR" title="2024" :items="dropdownList" />
       <!-- 城市/鄉鎮選單 -->
       <div class="flex items-center rounded-50px bg-#E9ECEF relative w-400px h-42px py-2">
         <div class="flex absolute">
@@ -57,8 +66,8 @@ onMounted(() => {
             <option selected value="all">
               全部
             </option>
-            <option v-for="item in taiwanCityList" :key="item" :value="item">
-              {{ item }}
+            <option v-for="item in taiwanCityList" :key="item" :value="item.fieldEn">
+              {{ item.fieldCN }}
             </option>
           </select>
           <div class="text-#CED4DA px-4">

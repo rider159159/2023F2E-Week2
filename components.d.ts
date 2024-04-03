@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AllVoteChart: typeof import('./src/components/section/AllVoteChart.vue')['default']
     Banner: typeof import('./src/components/section/Banner.vue')['default']
     BarChat: typeof import('./src/components/BarChat.vue')['default']
     County: typeof import('./src/components/Map/County.vue')['default']
@@ -20,6 +21,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     TableChart: typeof import('./src/components/TableChart.vue')['default']
     TaiwanMap: typeof import('./src/components/TaiwanMap.vue')['default']
+    TaiwanVoteMap: typeof import('./src/components/Map/TaiwanVoteMap.vue')['default']
     Town: typeof import('./src/components/Map/Town.vue')['default']
   }
 }

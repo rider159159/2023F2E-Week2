@@ -3,27 +3,35 @@
 import { storeToRefs } from 'pinia'
 import countyGeoData from '@/assets/GeoData/countyGeoData.json'
 import { pathGenerator } from '@/utils/d3'
-import vote2024 from '@/assets/Vote/2024.json'
+
 import { yearColor } from '@/utils/share/variable'
-import { mapStore, searchStore } from '@/stores'
+import { searchStore } from '@/stores'
 import { removeSpace } from '@/utils'
 
 const props = defineProps({
-  voteData: { type: Object, default: vote2024 },
   svg: { type: Object },
 })
+
 const emits = defineEmits(['setCountyEmit'])
 
 const SearchStore = searchStore()
-const { SEARCH_YEAR, SEARCH_CITY, TRIGGER_EVENT } = storeToRefs(SearchStore)
+const { SEARCH_YEAR, SEARCH_CITY, TRIGGER_EVENT, CURRENT_VOTE_DATA } = storeToRefs(SearchStore)
 
 const findLargestParty = computed(() => {
   return (item) => {
-    const { color2020, color2024 } = yearColor
+    const { color2016, color2020, color2024 } = yearColor
     const county = removeSpace(item.properties.county_en)
-    const { candidate1, candidate2, candidate3 } = props.voteData[county]
+    const { candidate1, candidate2, candidate3 } = CURRENT_VOTE_DATA.value[county]
 
     switch (SEARCH_YEAR.value) {
+      case '2016' :
+        if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
+          return color2016.KMTColor
+        if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
+          return color2016.DPPColor
+        if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
+          return color2016.PFPColor
+        break
       case '2020' :
         if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
           return color2020.PFPColor
@@ -70,7 +78,7 @@ const y = computed(() => (feature) => {
 
 function setTargetCounty(item) {
   const bounds = pathGenerator.bounds(item.geometry)
-  TRIGGER_EVENT.value = 'Click'
+  TRIGGER_EVENT.value = 'click'
   emits('setCountyEmit', {
     county_en: item.properties.county_en,
     bounds,
@@ -79,8 +87,9 @@ function setTargetCounty(item) {
 
 // TODO:下拉選單觸發
 watch(SEARCH_CITY, () => {
-  if (TRIGGER_EVENT) {
+  if (TRIGGER_EVENT.value === 'select' && SEARCH_CITY.value !== 'all') {
     const targetCity = countyGeoData.features.find(item => item.properties.county_en === SEARCH_CITY.value)
+    console.log(countyGeoData.features)
     const bounds = pathGenerator.bounds(targetCity.geometry)
 
     emits('setCountyEmit', {
@@ -104,7 +113,7 @@ onMounted (() => {
         @click="setTargetCounty(item)"
       />
       <text
-        v-if="SEARCH_CITY.length === 0"
+        v-if="SEARCH_CITY === 'all'"
         :y="y(item)"
         :x="x(item)"
         text-anchor="middle"
