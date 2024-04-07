@@ -55,13 +55,88 @@ function drawBarChart(data) {
   const stackGenerator = d3.stack()
     .keys(subgroups)
     .value((d, key) => (d[key] / d.Total) * 100) // 計算每個政黨的票數佔總票數的百分比
+    
+    const { candidate1, candidate2, candidate3, validVotes } = data
+    let checkParty1 = 0
+    let checkParty2 = 0
+    let checkParty3 = 0
+    switch (candidate1.part) {
+      case '中國國民黨':
+        checkParty1 = 1
+        break;
+      case '民主進步黨':
+        checkParty1 = 3
+        break
+      default:
+        checkParty1 = 2
+        break;
+    }
+    switch (candidate2.part) {
+      case '中國國民黨':
+        checkParty2 = 1
+        break;
+      case '民主進步黨':
+        checkParty2 = 3
+        break
+      default:
+        checkParty2 = 2
+        break;
+    }
+    switch (candidate3.part) {
+      case '中國國民黨':
+        checkParty3 = 1
+        break;
+      case '民主進步黨':
+        checkParty3 = 3
+        break
+      default:
+        checkParty3 = 2
+        break;
+    }
+  
+    function getPref(c1, c2, c3, pref) {
+      console.log('test',['民主進步黨', '中國國民黨'][pref - 1])
+      if (c3.part === ['民主進步黨', '中國國民黨'][pref - 1]) {
+        return c3.votes;
+      } else if (c2.part === ['民主進步黨', '中國國民黨'][pref - 1]) {
+        return c2.votes;
+      } else if (c1.part === ['民主進步黨', '中國國民黨'][pref - 1]) {
+        return c1.votes;
+      } else {
+        return '';
+      }
+    }
+    function getPref(c1, c2, c3, pref) {
+      const parties = ['民主進步黨', '中國國民黨'];
+      if (c3.part === parties[pref - 1]) {
+        return c3.votes;
+      } else if (c2.part === parties[pref - 1]) {
+        return c2.votes;
+      } else if (c1.part === parties[pref - 1]) {
+        return c1.votes;
+      } else {
+        return c3.votes; // 如果都沒有匹配,則取最後一個候選人的票數
+      }
+    }
 
-  // const { candidate1, candidate2, candidate3 } = data
-  const chartData = { DPP: 4671021, KMT: 5586019, PFP: 3690466 }
+    const chartData = {
+  "PFP": getPref(candidate1, candidate2, candidate3, 3),
+  "KMT": getPref(candidate1, candidate2, candidate3, 1),
+  "DPP": getPref(candidate1, candidate2, candidate3, 2),
+  "Total": validVotes
+};
+  // const chartData = { 
+  //     // "Name": "總計", 
+  //     "PFP": checkParty3 === 3 ? candidate3.votes : checkParty2 === 2 ? candidate2.votes : checkParty1 === 1 ? candidate1.votes :'', 
+  //     "KMT": checkParty3 === 3 ? candidate3.votes : checkParty2 === 2 ? candidate2.votes : checkParty1 === 1 ? candidate1.votes :'', 
+  //   "DPP": checkParty3 === 3 ? candidate3.votes : checkParty2 === 2 ? candidate2.votes : checkParty1 === 1 ? candidate1.votes :'', 
+  //   "Total": validVotes // "Valid": 12329520, // "Invalid": 4502741 
+  // } 
+
+  console.log('chartData',chartData)
   const layers = stackGenerator([
     chartData,
   ])
-  // { "City": "總計", "PFP": 464570, "KMT": 6592534, "DPP": 9215187, "Total": 16272291 },
 
   svg.selectAll('.layer')
     .data(layers)

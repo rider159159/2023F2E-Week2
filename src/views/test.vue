@@ -70,7 +70,7 @@ function drawBarChart(data) {
   const stackGenerator = d3.stack()
     .keys(subgroups)
     .value((d, key) => (d[key] / d.Total) * 100) // 計算每個政黨的票數佔總票數的百分比
-  console.log(data)
+  console.log('data',data)
   const layers = stackGenerator([data])
 
   svg.selectAll('.layer')
