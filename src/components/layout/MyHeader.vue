@@ -34,10 +34,16 @@ const townsCityList = ref(
   [],
 )
 
+// 監聽年分，年份更改時 SEARCH_CITY 變成全部
+watch(SEARCH_YEAR, (newValue, oldValue) => {
+  if (newValue !== oldValue)
+    SEARCH_CITY.value = 'all'
+})
+
+// 監聽縣市，當縣市變換，更換 SEARCH_CITY_TOWN
 watch(SEARCH_CITY, () => {
   TRIGGER_EVENT.value = 'select'
   if (SEARCH_CITY.value !== 'all') {
-    console.log(SEARCH_CITY.value, taiwanCityJSON)
     const currentCity = taiwanCityJSON.filter(i => i.CityEngName === SEARCH_CITY.value)
     townsCityList.value = currentCity[0]?.AreaList
     SEARCH_CITY_TOWN.value = ''

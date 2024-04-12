@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  percentage: {
+  voteRate: {
     type: Number,
     default: 0,
   },
@@ -12,10 +12,13 @@ const stroke = 10 // Stroke width
 const radius = size / 2 // Circle radius
 const normalizedRadius = radius - stroke * 2
 const circumference = normalizedRadius * 2 * Math.PI
-
 const fillColor = 'transparent' // The fill color of the circle
+const strokeDashOffset = computed(() => circumference - (props.voteRate / 100) * circumference)
 
-const strokeDashOffset = computed(() => circumference - (props.percentage / 100) * circumference)
+function toFixedSEC(number) {
+  console.log(number, Number.parseFloat(number).toFixed(2))
+  return Number.parseFloat(number).toFixed(2)
+}
 </script>
 
 <template>
@@ -48,7 +51,7 @@ const strokeDashOffset = computed(() => circumference - (props.percentage / 100)
       <p class="text-primary text-14px">
         投票率
       </p>
-      <span class="text-#D4009B font-bold text-20px">{{ props.percentage }}%</span>
+      <span class="text-#D4009B font-bold text-20px">{{ toFixedSEC(props.voteRate) }}%</span>
     </div>
   </div>
 </template>

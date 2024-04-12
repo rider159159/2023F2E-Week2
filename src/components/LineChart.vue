@@ -11,6 +11,14 @@ onMounted(() => {
 
 const voteList = [
   {
+    Year: 2024,
+    // PFP: 608590,
+    TPP: 3690466,
+    KMT: 4671021,
+    DPP: 5586019,
+    Total: 13947506,
+  },
+  {
     Year: 2020,
     PFP: 608590,
     KMT: 5522119,
@@ -19,9 +27,9 @@ const voteList = [
   },
   {
     Year: 2016,
-    PFP: 7814787,
-    KMT: 2707493,
-    DPP: 6604989,
+    PFP: 1576861,
+    KMT: 3813365,
+    DPP: 6894744,
     Total: 17127269,
   },
   {
