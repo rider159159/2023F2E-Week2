@@ -24,7 +24,7 @@ const voteList = [
     vote: 3690466,
     partyEN: 'TPP',
     partyZH: '台灣民眾黨',
-    color: TPPColor,
+    color: PFPColor,
   },
   {
     Year: 2020,
@@ -90,8 +90,9 @@ const voteList = [
     color: '#9D9D9D',
   },
 ]
+
 function drawChart(element, data) {
-  const width = 650
+  const width = 500
   const height = 250
   const marginTop = 10
   const marginBottom = 20

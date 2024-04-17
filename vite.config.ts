@@ -1,5 +1,4 @@
 import path from 'node:path'
-import { createRequire } from 'node:module'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -9,7 +8,7 @@ import Components from 'unplugin-vue-components/vite'
 
 // 自動引入 components
 import Unocss from 'unocss/vite'
-const require = createRequire(import.meta.url)
+
 // https://vitejs.dev/config/
 export default defineConfig({
   // base: '/2023F2E-Week2/',

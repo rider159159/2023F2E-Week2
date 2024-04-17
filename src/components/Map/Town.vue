@@ -67,7 +67,7 @@ const findLargestParty = computed(() => {
 
       case '2024' :
         if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
-          return color2024.TPPColor
+          return color2020.PFPColor
         if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
           return color2024.DPPColor
         if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)

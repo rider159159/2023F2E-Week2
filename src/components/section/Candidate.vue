@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 import { storeToRefs } from 'pinia'
 import { searchStore } from '@/stores'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
-import { numberWithCommas, voteRate } from '@/utils/share/methods'
+import { numberWithCommas } from '@/utils'
 
 const store = searchStore()
 const { CURRENT_PARTY_DATA } = storeToRefs(store)

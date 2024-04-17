@@ -8,6 +8,7 @@ import { yearColor } from '@/utils/share/variable'
 import { searchStore } from '@/stores'
 import { removeSpace } from '@/utils'
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const props = defineProps({
   svg: { type: Object },
 })

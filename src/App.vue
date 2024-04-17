@@ -4,7 +4,7 @@
 
 <template>
   <!-- <MyHeader></MyHeader> -->
-  <div class="min-h-[100vh]">
+  <div class="">
     <RouterView v-slot="{ Component, route }">
       <transition name="fade" mode="out-in">
         <component :is="Component" :key="route" />

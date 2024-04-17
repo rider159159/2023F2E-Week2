@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 import { storeToRefs } from 'pinia'
 
 import { searchStore } from '@/stores'
-import { numberWithCommas, voteRate } from '@/utils/share/methods'
+import { numberWithCommas } from '@/utils'
 
 const store = searchStore()
 const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
@@ -14,7 +14,7 @@ const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
     <MyHeader />
     <div class="flex mt-66px">
       <!-- <TaiwanMap :vote-data="voteData" /> -->
-      <!-- <TaiwanVoteMap /> -->
+      <TaiwanVoteMap />
       <!-- {{ CURRENT_CITY_DATA }} -->
       <section class="w-full px-48px">
         <h2 class="font-bold text-28px pt-32px pb-12px">
@@ -88,6 +88,14 @@ const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
             </h3>
             <LineChart />
           </div>
+        </div>
+
+        <!-- 各區域投票總攬 -->
+        <div class="overflow-x-auto scrollbar">
+          <h3 class="text-20px font-bold pt-6 mb-2">
+            各縣市投票總覽
+          </h3>
+          <TableChart />
         </div>
       </section>
     </div>

@@ -7,6 +7,7 @@ const props = defineProps({
     default: 0,
   },
 })
+
 const size = 160 // SVG size
 const stroke = 10 // Stroke width
 const radius = size / 2 // Circle radius
@@ -16,7 +17,6 @@ const fillColor = 'transparent' // The fill color of the circle
 const strokeDashOffset = computed(() => circumference - (props.voteRate / 100) * circumference)
 
 function toFixedSEC(number) {
-  console.log(number, Number.parseFloat(number).toFixed(2))
   return Number.parseFloat(number).toFixed(2)
 }
 </script>

@@ -4,6 +4,7 @@ import vote2016 from '@/assets/Vote/2016.json'
 import vote2020 from '@/assets/Vote/2020.json'
 import vote2024 from '@/assets/Vote/2024.json'
 import { removeSpace } from '@/utils'
+import { yearColor } from '@/utils/share/variable'
 
 export const searchStore = defineStore('search-store', () => {
   // 也可以使用 any   const USER_INFO_REF: any = ref({})
@@ -11,6 +12,19 @@ export const searchStore = defineStore('search-store', () => {
   const SEARCH_CITY = ref('all')
   const SEARCH_CITY_TOWN = ref('')
   const TRIGGER_EVENT = ref('')
+
+  const PARTY_COLOR_DATA = computed(() => {
+    const { color2024, color2020 } = yearColor
+    const { KMTColor, TPPColor, DPPColor } = color2024
+    const { PFPColor } = color2020
+
+    switch (SEARCH_YEAR.value) {
+      case '2024':
+        return [KMTColor, TPPColor, DPPColor]
+      default:
+        return [KMTColor, PFPColor, DPPColor]
+    }
+  })
 
   const CURRENT_VOTE_DATA = computed(() => {
     switch (Number(SEARCH_YEAR.value)) {
@@ -53,7 +67,6 @@ export const searchStore = defineStore('search-store', () => {
 
   const CURRENT_PARTY_DATA = computed(() => {
     const { candidate1, candidate2, candidate3, validVotes } = CURRENT_CITY_DATA.value
-
     let checkParty1 = 0
     let checkParty2 = 0
     let checkParty3 = 0
@@ -109,6 +122,7 @@ export const searchStore = defineStore('search-store', () => {
     SEARCH_CITY,
     SEARCH_CITY_TOWN,
     TRIGGER_EVENT,
+    PARTY_COLOR_DATA,
     CURRENT_VOTE_DATA,
     ARRAY_VOTE_DATA,
     CURRENT_CITY_DATA,
