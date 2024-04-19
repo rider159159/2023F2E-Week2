@@ -1,8 +1,10 @@
 <script setup>
 import * as d3 from 'd3'
 import { DPPColor, KMTColor, PFPColor, TPPColor } from '@/utils/share/variable'
+import { numberWithCommas } from '@/utils'
 
 const d3Chart = ref(null)
+const tooltip = ref(null) // Reference to the tooltip element
 
 const voteList = [
   {
@@ -87,9 +89,57 @@ const voteList = [
     vote: 6566298,
     partyEN: 'None',
     partyZH: '無黨派',
-    color: '#9D9D9D',
+    color: PFPColor,
   },
 ]
+
+function createTooltip() {
+  tooltip.value = d3.select('body')
+    .append('div')
+    .attr('class', 'tooltip')
+    .style('position', 'absolute')
+    .style('pointer-events', 'none')
+    .style('opacity', 0)
+    .style('background', 'white')
+    .style('border-radius', '5px')
+    .style('box-shadow', '0 0 10px rgba(0,0,0,.25)')
+    .style('padding', '10px')
+    .style('line-height', '1.3')
+    .style('font', '11px sans-serif')
+}
+
+function updateTooltipContent(d) {
+  let partyName = ''
+  switch (d.partyZH) {
+    case '中國國民黨':
+      partyName = '蝙蝠黨'
+      break
+    case '民主進步黨':
+      partyName = '木棍黨'
+      break
+    default:
+      partyName = '弓箭黨'
+      break
+  }
+  tooltip.value.html(`<b>${partyName}</b><br/>總票數: ${numberWithCommas(d.vote)}`)
+}
+
+function showTooltip(event, d) {
+  // Show the tooltip and update its content when hovering over a bar
+  tooltip.value.transition()
+    .duration(200)
+    .style('opacity', 0.9)
+    .style('left', `${event.pageX}px`)
+    .style('top', `${event.pageY - 28}px`) // Offset to position the tooltip above the cursor
+  updateTooltipContent(d)
+}
+
+function hideTooltip() {
+  // Hide the tooltip when mouse leaves a bar
+  tooltip.value.transition()
+    .duration(200)
+    .style('opacity', 0)
+}
 
 function drawChart(element, data) {
   const width = 500
@@ -118,7 +168,6 @@ function drawChart(element, data) {
       .rangeRound([0, fx.bandwidth()])
       .padding(0.05)
   }
-  // console.log(x)
 
   const y = d3.scaleLinear()
     .domain([0, d3.max(data, d => d.vote)]).nice()
@@ -131,6 +180,7 @@ function drawChart(element, data) {
     .attr('viewBox', [0, 0, width, height])
     .attr('style', 'max-width: 100%; height: auto;')
 
+  // 處理 X 軸效果
   svg.append('g')
     .selectAll()
     .data(d3.group(data, d => d.Year))
@@ -148,20 +198,30 @@ function drawChart(element, data) {
     .attr('height', d => y(0) - y(d.vote))
     .attr('fill', d => d.color) // 使用 voteList 中的 color 屬性作為填充顏色
 
+  // 處理 X 軸上指標
   svg.append('g')
     .attr('transform', `translate(0,${height - marginBottom})`)
     .call(d3.axisBottom(fx).tickSizeOuter(0))
     .call(g => g.selectAll('.domain').remove())
 
+  // 處理 Y 軸效果
   svg.append('g')
     .attr('transform', `translate(${marginLeft},0)`)
     .call(d3.axisLeft(y).ticks(null, 's'))
     .call(g => g.selectAll('.domain').remove())
 
-  // return Object.assign(svg.node(), { scales: { color: d3.scaleOrdinal().range([DPPColor, KMTColor, PFPColor, TPPColor]) } })
+  // 設定 tooltip 事件
+  svg.selectAll('rect')
+    .on('mouseover', (event, d) => showTooltip(event, d))
+    .on('mousemove', (event) => {
+      tooltip.value.style('left', `${event.pageX}px`)
+      tooltip.value.style('top', `${event.pageY - 28}px`)
+    })
+    .on('mouseleave', hideTooltip)
 }
 
 onMounted(() => {
+  createTooltip()
   if (d3Chart.value)
     drawChart(d3Chart.value, voteList)
 })

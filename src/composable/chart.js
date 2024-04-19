@@ -1,10 +1,10 @@
 import { geoMercator, geoPath } from 'd3-geo'
 import * as d3 from 'd3'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
-import { numberWithCommas } from '@/utils'
 
 const projection = geoMercator().center([124.5, 23.4]).scale(4300)
 export const pathGenerator = geoPath().projection(projection)
+const tooltip = null
 
 // 長條圖右
 function rightRoundedRect(x, y, width, height, radius) {
@@ -29,40 +29,25 @@ function leftRoundedRect(x, y, width, height, radius) {
        }z`
 }
 
-function showTooltip(event, d, dom) {
+function showTooltip(event, d) {
   // Show the tooltip and update its content when hovering over a bar
-  dom.transition()
+  tooltip.transition()
     .duration(200)
     .style('opacity', 0.9)
     .style('left', `${event.pageX}px`)
     .style('top', `${event.pageY - 28}px`) // Offset to position the tooltip above the cursor
+  updateTooltipContent(d)
 }
 
-function updateTooltipContent(d, dom) {
-  let partyName = ''
-  switch (d.key) {
-    case 'KMT':
-      partyName = '蝙蝠黨'
-      break
-    case 'DPP':
-      partyName = '木棍黨'
-      break
-    default:
-      partyName = '弓箭黨'
-      break
-  }
-  dom.html(`<b>${partyName}</b><br/>總票數: ${numberWithCommas(d.data[d.key])}  `)
-}
-
-function hideTooltip(dom) {
+function hideTooltip() {
   // Hide the tooltip when mouse leaves a bar
-  dom.transition()
+  tooltip.transition()
     .duration(200)
     .style('opacity', 0)
 }
 
 // 製作長條圖
-export function drawBarChart(data, params, tooltipDOM) {
+export function drawBarChart(data, params) {
   const { width, height, chartId } = params
   const borderRadius = 5 // 這是你想要的 border-radius 大小
 
@@ -95,34 +80,36 @@ export function drawBarChart(data, params, tooltipDOM) {
     .attr('class', 'layer')
     .attr('fill', d => color(d.key)) // d represents the layer here
     .selectAll('path')
-    .data(d => d.map(item => ({ ...item, key: d.key }))) // Pass key into each segment
+    .data(d => d) // d is the layer
     .enter()
     .append('path')
-    .attr('class', 'bar-chart-path') // 添加类名
-    .attr('d', (d) => {
+    .attr('d', (d, i, nodes) => {
+      const layer = nodes[i].parentNode.__data__ // Access the parent node's data
       const x0 = x(d[0])
       const x1 = x(d[1])
       const w = x1 - x0
       const y1 = height
 
       // 根據圖表的顏色來選擇相應的繪圖函數
-      if (d.key === 'DPP')
+      if (layer.key === 'DPP') {
+        // 綠色圖表，右邊圓角
         return rightRoundedRect(x0, 0, w, y1, borderRadius)
-      else if (d.key === 'KMT')
+      }
+      else if (layer.key === 'KMT') {
         return leftRoundedRect(x0, 0, w, y1, borderRadius)
-      else
+      }
+      else {
+        // 對於其他圖表，這裡可以添加條件來選擇不同的繪製函數或返回普通矩形
         return `M${x0},0 L${x1},0 L${x1},${y1} L${x0},${y1} Z`
+      }
     })
 
   // 設定 tooltip 事件
-  svg.selectAll('.bar-chart-path')
-    .on('mouseover', (event, d) => {
-      showTooltip(event, d, tooltipDOM)
-      updateTooltipContent(d, tooltipDOM)
-    })
+  svg.selectAll('path')
+    .on('mouseover', (event, d) => showTooltip(event, d))
     .on('mousemove', (event) => {
-      tooltipDOM.style('left', `${event.pageX}px`)
-      tooltipDOM.style('top', `${event.pageY - 28}px`)
+      tooltip.style('left', `${event.pageX}px`)
+      tooltip.style('top', `${event.pageY - 28}px`)
     })
-    .on('mouseleave', () => hideTooltip(tooltipDOM))
+    .on('mouseleave', hideTooltip)
 }

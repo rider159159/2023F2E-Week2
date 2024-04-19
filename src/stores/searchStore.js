@@ -40,24 +40,36 @@ export const searchStore = defineStore('search-store', () => {
   })
 
   const ARRAY_VOTE_DATA = computed(() => {
+    let data = null
     switch (Number(SEARCH_YEAR.value)) {
       case 2016: {
-        const data = Object.values(vote2016)
-        return data
+        data = Object.values(vote2016)
+        break
       }
       case 2020: {
-        const data = Object.values(vote2020)
-        return data
+        data = Object.values(vote2020)
+        break
       }
+
       case 2024: {
-        const data = Object.values(vote2024)
-        return data
-      }
-      default: {
-        const data = Object.values(vote2024)
-        return data
+        data = Object.values(vote2024)
+        break
       }
     }
+    const newData = data.map((item) => {
+      const { candidate1, candidate2, candidate3 } = item
+      if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
+        item.highVotes = candidate1.party
+
+      if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
+        item.highVotes = candidate2.party
+
+      if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
+        item.highVotes = candidate3.party
+
+      return item
+    })
+    return newData
   })
 
   const CURRENT_CITY_DATA = computed(() => {
@@ -117,6 +129,29 @@ export const searchStore = defineStore('search-store', () => {
     return chartData
   })
 
+  const CURRENT_CITY_ARRAY_DATA = computed(() => {
+    if (SEARCH_CITY.value === 'all') {
+      return ARRAY_VOTE_DATA.value
+    }
+    else {
+      const data = Object.values(CURRENT_CITY_DATA.value.detail)
+      const newData = data.map((item) => {
+        const { candidate1, candidate2, candidate3 } = item
+        if (candidate1.votes > candidate2.votes && candidate1.votes > candidate3.votes)
+          item.highVotes = candidate1.party
+
+        if (candidate2.votes > candidate1.votes && candidate2.votes > candidate3.votes)
+          item.highVotes = candidate2.party
+
+        if (candidate3.votes > candidate1.votes && candidate3.votes > candidate2.votes)
+          item.highVotes = candidate3.party
+
+        return item
+      })
+      return newData
+    }
+  })
+
   return {
     SEARCH_YEAR,
     SEARCH_CITY,
@@ -127,5 +162,6 @@ export const searchStore = defineStore('search-store', () => {
     ARRAY_VOTE_DATA,
     CURRENT_CITY_DATA,
     CURRENT_PARTY_DATA,
+    CURRENT_CITY_ARRAY_DATA,
   }
 })

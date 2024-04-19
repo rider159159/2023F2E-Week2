@@ -51,7 +51,6 @@ watch(SEARCH_CITY, () => {
 })
 
 onMounted(() => {
-  SEARCH_YEAR.value = '2024'
   SEARCH_CITY.value = 'all'
   makeJson()
 })
@@ -64,7 +63,7 @@ onMounted(() => {
       <p class="text-primary font-bold mr-4">
         選擇年分
       </p>
-      <Dropdown v-model="SEARCH_YEAR" title="2024" :items="dropdownList" />
+      <Dropdown v-model="SEARCH_YEAR" :title="SEARCH_YEAR" :items="dropdownList" />
       <!-- 城市/鄉鎮選單 -->
       <div class="flex items-center rounded-50px bg-#E9ECEF relative w-400px h-42px py-2">
         <div class="flex absolute">

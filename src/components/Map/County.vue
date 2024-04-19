@@ -90,7 +90,6 @@ function setTargetCounty(item) {
 watch(SEARCH_CITY, () => {
   if (TRIGGER_EVENT.value === 'select' && SEARCH_CITY.value !== 'all') {
     const targetCity = countyGeoData.features.find(item => item.properties.county_en === SEARCH_CITY.value)
-    console.log(countyGeoData.features)
     const bounds = pathGenerator.bounds(targetCity.geometry)
 
     emits('setCountyEmit', {

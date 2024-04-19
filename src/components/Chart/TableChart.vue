@@ -3,12 +3,13 @@ import { onMounted } from 'vue'
 import * as d3 from 'd3'
 import { storeToRefs } from 'pinia'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
-import { numberWithCommas } from '@/utils'
+import { numberWithCommas, toFixed2 } from '@/utils'
 import { drawBarChart } from '@/utils/d3'
 import { searchStore } from '@/stores'
 
 const store = searchStore()
-const { ARRAY_VOTE_DATA, SEARCH_YEAR } = storeToRefs(store)
+const { SEARCH_YEAR, CURRENT_CITY_ARRAY_DATA } = storeToRefs(store)
+let tooltip = null
 
 function CURRENT_PARTY_ARRAY_DATA(item) {
   const { candidate1, candidate2, candidate3, validVotes } = item
@@ -63,26 +64,47 @@ function CURRENT_PARTY_ARRAY_DATA(item) {
 }
 
 function renderTableChart() {
-  ARRAY_VOTE_DATA.value.forEach((item, index) => {
+  CURRENT_CITY_ARRAY_DATA.value.forEach((item, index) => {
     d3.select(`#chart-${index}`).selectAll('*').remove()
   })
 
-  ARRAY_VOTE_DATA.value.forEach((item, index) => {
+  CURRENT_CITY_ARRAY_DATA.value.forEach((item, index) => {
     const data = CURRENT_PARTY_ARRAY_DATA(item)
     const params = {
       width: 200,
       height: 10,
       chartId: `chart-${index}`,
     }
-    drawBarChart(data, params)
+    drawBarChart(data, params, tooltip)
   })
+}
+
+function createTooltip() {
+  tooltip = d3.select('body')
+    .append('div')
+    .attr('class', 'tooltip')
+    .style('position', 'absolute')
+    .style('pointer-events', 'none')
+    .style('opacity', 0)
+    .style('background', 'white')
+    .style('border-radius', '5px')
+    .style('box-shadow', '0 0 10px rgba(0,0,0,.25)')
+    .style('padding', '10px')
+    .style('line-height', '1.3')
+    .style('font', '11px sans-serif')
 }
 
 watch(() => SEARCH_YEAR.value, () => {
   renderTableChart()
 })
 
+watch(() => CURRENT_CITY_ARRAY_DATA.value, () => {
+  console.log('renderTableChart')
+  renderTableChart()
+})
+
 onMounted(() => {
+  createTooltip()
   renderTableChart()
 })
 </script>
@@ -99,7 +121,7 @@ onMounted(() => {
             得票率
           </th>
           <th class="text-left p-2 text-primary ">
-            當選人
+            最高得票人
           </th>
           <th class="text-left p-2 text-primary ">
             投票數
@@ -110,7 +132,7 @@ onMounted(() => {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in ARRAY_VOTE_DATA" :key="index" class="border-b border-#DEE2E6 last:border-0">
+        <tr v-for="(item, index) in CURRENT_CITY_ARRAY_DATA" :key="index" class="border-b border-#DEE2E6 last:border-0">
           <td class="py-10px pl-2 font-bold text-#334155">
             {{ item.fieldCN }}
           </td>
@@ -118,27 +140,24 @@ onMounted(() => {
             <svg :id="`chart-${index}`" class="bar-chart" />
           </td>
           <td class="cell">
-            <!-- v-if="checkVote === 'KMT'"  -->
-            <!-- <div class="flex items-center">
+            <div v-if="item.highVotes === '中國國民黨'" class="flex items-center">
               <img src="/Role.png" class="rounded-50px mr-4" alt="德古拉">
               <p>德古拉</p>
-            </div> -->
-            <!-- v-if="checkVote === 'DPD'" -->
-            <!-- <div class="flex items-center">
-              <img src="/Role-1.png" class="rounded-50px mr-4" alt="林克">
-              <p>林克</p>
-            </div> -->
-            <!-- v-if="checkVote === 'DPP'" -->
-            <div class="flex items-center">
+            </div>
+            <div v-else-if="item.highVotes === '民主進步黨'" class="flex items-center">
               <img src="/Role-2.png" class="rounded-50px mr-4" alt="綠巨魔">
               <p>綠巨魔</p>
+            </div>
+            <div v-else class="flex items-center">
+              <img src="/Role-1.png" class="rounded-50px mr-4" alt="林克">
+              <p>林克</p>
             </div>
           </td>
           <td>
             {{ numberWithCommas(item.validVotes) }}
           </td>
           <td class="py-10px pr-2">
-            {{ item.voteRate }}%
+            {{ toFixed2(item.voteRate) }}%
           </td>
         </tr>
       </tbody>
