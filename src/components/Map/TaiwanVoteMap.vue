@@ -90,7 +90,7 @@ onMounted (() => {
 </script>
 
 <template>
-  <div class="bg-#E4FAFF w-400px h-600px relative">
+  <div class="bg-#E4FAFF w-full md:w-400px max-h-200px md:max-h-none md:h-600px overflow-hidden relative">
     <div
       v-if="SEARCH_CITY !== 'all'"
       class="absolute top-0 w-full left-0 cursor-pointer bg-white opacity-90 text-center py-2"

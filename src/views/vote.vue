@@ -12,7 +12,7 @@ const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
 <template>
   <main>
     <MyHeader />
-    <div class="flex mt-66px">
+    <div class="flex flex-col md:flex-row mt-66px">
       <!-- <TaiwanMap :vote-data="voteData" /> -->
       <TaiwanVoteMap />
       <!-- {{ CURRENT_CITY_DATA }} -->
@@ -93,7 +93,7 @@ const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
         <!-- 各區域投票總攬 -->
         <div class="overflow-x-auto scrollbar">
           <h3 class="text-20px font-bold pt-6 mb-2">
-            各縣市投票總覽
+            {{ SEARCH_CITY === 'all' ? '各縣市投票總覽' : `${CURRENT_CITY_DATA.fieldCN}投票總覽` }}
           </h3>
           <TableChart />
         </div>
