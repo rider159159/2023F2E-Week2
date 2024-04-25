@@ -64,18 +64,21 @@ function CURRENT_PARTY_ARRAY_DATA(item) {
 }
 
 function renderTableChart() {
-  CURRENT_CITY_ARRAY_DATA.value.forEach((item, index) => {
-    d3.select(`#chart-${index}`).selectAll('*').remove()
-  })
+  nextTick(()=>{
 
-  CURRENT_CITY_ARRAY_DATA.value.forEach((item, index) => {
-    const data = CURRENT_PARTY_ARRAY_DATA(item)
-    const params = {
-      width: 200,
-      height: 10,
-      chartId: `chart-${index}`,
-    }
-    drawBarChart(data, params, tooltip)
+    CURRENT_CITY_ARRAY_DATA.value.forEach((item, index) => {
+      d3.select(`#chart-${index}`).selectAll('*').remove()
+    })
+
+    CURRENT_CITY_ARRAY_DATA.value.forEach((item, index) => {
+      const data = CURRENT_PARTY_ARRAY_DATA(item)
+      const params = {
+        width: 200,
+        height: 10,
+        chartId: `chart-${index}`,
+      }
+      drawBarChart(data, params, tooltip)
+    })
   })
 }
 

@@ -16,7 +16,7 @@ const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
       <!-- <TaiwanMap :vote-data="voteData" /> -->
       <TaiwanVoteMap />
       <!-- {{ CURRENT_CITY_DATA }} -->
-      <section class="w-full px-48px">
+      <section class="w-full px-4 sm:px-6 md:px-48px">
         <h2 class="font-bold text-28px pt-32px pb-12px">
           全臺縣市總統得票
         </h2>
@@ -25,7 +25,7 @@ const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
           <h3 class="text-20px font-bold">
             {{ SEARCH_CITY === 'all' ? '全台總統得票數' : `${CURRENT_CITY_DATA.fieldCN}總統得票數` }}
           </h3>
-          <section class="w-full grid grid-cols-2 gap-4">
+          <section class="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- 左側候選人+政黨 -->
             <Candidate />
             <!-- 右側投票率 -->

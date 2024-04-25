@@ -58,37 +58,48 @@ onMounted(() => {
 
 <template>
   <header class="fixed z-10 top-0 left-0 w-full flex bg-#fff shadow-lg py-3 px-6">
-    <img src="/header/logo.svg" class="mr-6" alt="logo">
-    <div class="flex items-center">
-      <p class="text-primary font-bold mr-4">
-        選擇年分
-      </p>
+    
+    <div class="grid grid-cols-4 md:grid-cols-7 gap-4">
+      <!-- MD 上 3 份，小於 MD 也是 3 份 -->
+      <div class="col-span-3 md:col-span-3">
+        <img src="/header/logo.svg" class="mr-6" alt="logo">
+      </div>
+
+      <!-- MD 上 1 份，小於 MD 也是 1 份 -->
+      <div class="flex col-span-1 md:col-span-2 items-center">
+        <p class="hidden md:block text-primary font-bold mr-4">
+          選擇年分
+        </p>
       <Dropdown v-model="SEARCH_YEAR" :title="SEARCH_YEAR" :items="dropdownList" />
-      <!-- 城市/鄉鎮選單 -->
-      <div class="flex items-center rounded-50px bg-#E9ECEF relative w-400px h-42px py-2">
-        <div class="flex absolute">
-          <select v-model="SEARCH_CITY" class="bg-transparent w-150px px-4 ">
+      </div>
+
+      <!-- MD 上 1 份，小於 MD 占 2 份(1/2) -->
+      <div class="col-span-2 md:col-span-1 flex items-center">
+        <select v-model="SEARCH_CITY" class="bg-transparent w-full md:w-150px px-4 ">
             <option selected value="all">
               全部
             </option>
             <option v-for="item in taiwanCityList" :key="item" :value="item.fieldEn">
               {{ item.fieldCN }}
             </option>
-          </select>
-          <div class="text-#CED4DA px-4">
-            |
-          </div>
-          <select v-if=" SEARCH_CITY !== 'all'" id="taiwanCity" v-model="SEARCH_CITY_TOWN" placeholder="請選擇區域" class="bg-transparent">
-            <option selected disabled value="">
-              請選擇區域
-            </option>
-            <option v-for="item in townsCityList" :key="item" :value="item">
-              {{ item.AreaName }}
-            </option>
-          </select>
+        </select>
+        <div class="text-#CED4DA px-4">
+          |
         </div>
-        <!-- <input v-model="SEARCH_CITY" list="city" class="absolute left-16px bg-transparent" placeholder="請選擇縣市"> -->
-      </div>
+      </div> 
+
+      <!-- MD 上 1 份，小於 MD 占 2 份(1/2) -->
+      <div class="col-span-2 md:col-span-1">
+        <select v-if=" SEARCH_CITY !== 'all'" id="taiwanCity" v-model="SEARCH_CITY_TOWN" placeholder="請選擇區域" class="bg-transparent w-full">
+          <option selected disabled value="">
+            請選擇區域
+          </option>
+          <option v-for="item in townsCityList" :key="item" :value="item">
+            {{ item.AreaName }}
+          </option>
+        </select>
+      </div> 
     </div>
+
   </header>
 </template>

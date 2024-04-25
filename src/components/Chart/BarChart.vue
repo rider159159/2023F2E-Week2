@@ -4,11 +4,14 @@ import { storeToRefs } from 'pinia'
 import { searchStore } from '@/stores'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
 import { drawBarChart } from '@/utils/d3'
+import { useScreenWidth } from '@/composables/useScreenWidth'; // 確
 
 let tooltip = null
 
 const store = searchStore()
 const { CURRENT_PARTY_DATA } = storeToRefs(store)
+const { screenWidth } = useScreenWidth();
+
 
 function clearChart() {
   d3.select('#totalChart')
@@ -35,7 +38,7 @@ watch(
   () => CURRENT_PARTY_DATA.value,
   (newValue) => {
     const params = {
-      width: 400,
+      width: isMobile.value,
       height: 20,
       chartId: `totalChart`,
     }
@@ -47,10 +50,17 @@ watch(
   },
 )
 
+const isMobile = computed(() => {
+    if(screenWidth.value <= 768)return 300
+    if(screenWidth.value <= 400)return 200
+
+    return 400
+});
+
 onMounted(() => {
   createTooltip()
   const params = {
-    width: 400,
+    width: isMobile.value,
     height: 20,
     chartId: `totalChart`,
   }
@@ -59,7 +69,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex justify-center min-w-500px">
+  <div class="flex justify-center md:min-w-500px">
     <svg id="totalChart" />
   </div>
 </template>
