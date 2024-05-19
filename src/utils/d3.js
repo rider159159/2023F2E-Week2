@@ -2,9 +2,17 @@ import { geoMercator, geoPath } from 'd3-geo'
 import * as d3 from 'd3'
 import { DPPColor, KMTColor, PFPColor } from '@/utils/share/variable'
 import { numberWithCommas } from '@/utils'
+import { useScreenWidth } from '@/composables/useScreenWidth'; // 確
 
+
+const { screenWidth } = useScreenWidth();
 const projection = geoMercator().center([124.5, 23.4]).scale(4300)
 export const pathGenerator = geoPath().projection(projection)
+export const  chartMargin = {
+  top: 10, right: 30, bottom: 10, left: 30
+}
+export const chartWidth =  650 - chartMargin.left - chartMargin.right
+export const chartHeight =  250 
 
 // 長條圖右
 function rightRoundedRect(x, y, width, height, radius) {
@@ -117,12 +125,17 @@ export function drawBarChart(data, params, tooltipDOM) {
   // 設定 tooltip 事件
   svg.selectAll('.bar-chart-path')
     .on('mouseover', (event, d) => {
+      if(screenWidth.value <= 768) return
       showTooltip(event, d, tooltipDOM)
       updateTooltipContent(d, tooltipDOM)
     })
     .on('mousemove', (event) => {
+      if(screenWidth.value <= 768) return
       tooltipDOM.style('left', `${event.pageX}px`)
       tooltipDOM.style('top', `${event.pageY - 28}px`)
     })
-    .on('mouseleave', () => hideTooltip(tooltipDOM))
+    .on('mouseleave', () => {
+      if(screenWidth.value <= 768) return
+      hideTooltip(tooltipDOM)
+    })
 }

@@ -6,12 +6,17 @@ import 'uno.css'
 import '@unocss/reset/tailwind.css'
 import { setupStore } from './stores'
 import { setupRouter } from './router'
+import { createVfm } from 'vue-final-modal'
+
+const vfm = createVfm()
 
 function setupApp() {
   const app = createApp(App)
   app.component('VueDatePicker', VueDatePicker)
   setupStore(app)
   setupRouter(app)
+  app.use(vfm)
   app.mount('#app')
+
 }
 setupApp()

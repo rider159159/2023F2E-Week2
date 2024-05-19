@@ -16,6 +16,7 @@ declare module 'vue' {
     Dropdown: typeof import('./src/components/Dropdown.vue')['default']
     GroupBarChart: typeof import('./src/components/Chart/GroupBarChart.vue')['default']
     LineChart: typeof import('./src/components/Chart/LineChart.vue')['default']
+    Modal: typeof import('./src/components/Modal.vue')['default']
     MYFooter: typeof import('./src/components/layout/MYFooter.vue')['default']
     MyHeader: typeof import('./src/components/layout/MyHeader.vue')['default']
     ProgressBar: typeof import('./src/components/Chart/ProgressBar.vue')['default']

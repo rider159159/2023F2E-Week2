@@ -10,7 +10,7 @@ const { CURRENT_PARTY_DATA } = storeToRefs(store)
 </script>
 
 <template>
-  <div class="overflow-auto bg-white rounded-12px flex flex-col justify-center scrollbar">
+  <div class="overflow-auto bg-white rounded-12px flex flex-col justify-center scrollbar py-6">
     <div class="md:min-w-500px grid md:grid-cols-3 w-full">
       <div class="flex justify-center">
         <img class="w-48px h-48px mr-3" src="/Role.png" alt="德古拉">

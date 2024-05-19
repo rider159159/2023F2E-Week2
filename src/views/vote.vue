@@ -12,7 +12,7 @@ const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
 <template>
   <main>
     <MyHeader />
-    <div class="flex flex-col md:flex-row mt-66px">
+    <div class="flex flex-col md:flex-row md:mt-66px mt-104px">
       <!-- <TaiwanMap :vote-data="voteData" /> -->
       <TaiwanVoteMap />
       <!-- {{ CURRENT_CITY_DATA }} -->
@@ -29,9 +29,9 @@ const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
             <!-- 左側候選人+政黨 -->
             <Candidate />
             <!-- 右側投票率 -->
-            <div class="overflow-auto bg-white rounded-12px flex gap-4 scrollbar">
+            <div class="overflow-auto bg-white rounded-12px flex justify-center gap-4 scrollbar">
               <ProgressBar :vote-rate="CURRENT_CITY_DATA.voteRate" />
-              <div class="min-w-200px grid grid-cols-2 pt-3 pb-6 gap-6">
+              <div class="md:min-w-200px grid grid-cols-1 md:grid-cols-2 pt-3 pb-6 gap-6">
                 <div>
                   <div class="mb-4">
                     <p class="text-#64748B text-14px">
@@ -75,7 +75,7 @@ const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
         </div>
 
         <!-- 總統票數 -->
-        <div class="w-full grid grid-cols-2 gap-4 mb-10">
+        <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
           <div class="b b-#DEE2E6 rounded-12px overflow-auto scrollbar">
             <h3 class="text-20px font-bold px-4 pt-6">
               歷屆政黨得票數
@@ -91,7 +91,7 @@ const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
         </div>
 
         <!-- 各區域投票總攬 -->
-        <div class="overflow-x-auto scrollbar">
+        <div class="">
           <h3 class="text-20px font-bold pt-6 mb-2">
             {{ SEARCH_CITY === 'all' ? '各縣市投票總覽' : `${CURRENT_CITY_DATA.fieldCN}投票總覽` }}
           </h3>

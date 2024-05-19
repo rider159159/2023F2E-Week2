@@ -17,21 +17,21 @@ const { SEARCH_YEAR } = storeToRefs(SearchStore)
         選擇查詢年分
       </p>
     </section>
-    <div class="grid grid-cols-5 gap-6 w-924px">
+    <div class="grid grid-cols-5 gap-6">
       <RouterLink
-        to="/vote" class="bg-gray-1 b-rounded-50px text-center p-3"
+        to="/vote" class="bg-gray-1 b-rounded-50px text-center p-3 w-100px"
         @click="SEARCH_YEAR = '2016'"
       >
         2016
       </RouterLink>
       <RouterLink
-        to="/vote" class="bg-gray-1 b-rounded-50px text-center p-3"
+        to="/vote" class="bg-gray-1 b-rounded-50px text-center p-3 w-100px"
         @click="SEARCH_YEAR = '2020'"
       >
         2020
       </RouterLink>
       <RouterLink
-        to="/vote" class="bg-gray-1 b-rounded-50px text-center p-3"
+        to="/vote" class="bg-gray-1 b-rounded-50px text-center p-3 w-100px"
         @click="SEARCH_YEAR = '2024'"
       >
         2024

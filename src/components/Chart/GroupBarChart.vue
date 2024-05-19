@@ -2,6 +2,7 @@
 import * as d3 from 'd3'
 import { DPPColor, KMTColor, PFPColor, TPPColor } from '@/utils/share/variable'
 import { numberWithCommas } from '@/utils'
+import { chartMargin, chartWidth, chartHeight } from '@/utils/d3.js'
 
 const d3Chart = ref(null)
 const tooltip = ref(null) // Reference to the tooltip element
@@ -142,12 +143,6 @@ function hideTooltip() {
 }
 
 function drawChart(element, data) {
-  const width = 500
-  const height = 250
-  const marginTop = 10
-  const marginBottom = 20
-  const marginLeft = 40
-
   const years = new Set(data.map(d => d.Year))
   const yearParties = new Map()
   // const parties = new Set(data.map(d => d.partyEN))
@@ -158,7 +153,7 @@ function drawChart(element, data) {
 
   const fx = d3.scaleBand()
     .domain([...years])
-    .rangeRound([marginLeft, 450])
+    .rangeRound([chartMargin.left, 450])
     .paddingInner(0.2)
 
   const x = (year) => {
@@ -171,21 +166,21 @@ function drawChart(element, data) {
 
   const y = d3.scaleLinear()
     .domain([0, d3.max(data, d => d.vote)]).nice()
-    .rangeRound([height - marginBottom, marginTop])
+    .rangeRound([chartHeight - chartMargin.bottom, chartMargin.top])
 
   const svg = d3.select(element)
     .append('svg')
-    .attr('width', width)
-    .attr('height', height)
-    .attr('viewBox', [0, 0, width, height])
-    .attr('style', 'max-width: 100%; height: auto;')
+    .attr('width', chartWidth-50)
+    .attr('height', chartHeight)
+    .attr('viewBox', [0, 0, chartWidth-50, chartHeight])
+    .attr('style', 'max-width: 100%')
 
-  // 處理 X 軸效果
+  // 製作 bar Group 圖片
   svg.append('g')
     .selectAll()
     .data(d3.group(data, d => d.Year))
     .join('g')
-    .attr('transform', ([year]) => `translate(${fx(year)},0)`)
+    .attr('transform', ([year]) => `translate(${fx(year)+30},0)`)
     .selectAll()
     .data(([, data]) => data.length > 0 ? data : []) // 判斷是否有資料
     .join('rect')
@@ -200,14 +195,16 @@ function drawChart(element, data) {
 
   // 處理 X 軸上指標
   svg.append('g')
-    .attr('transform', `translate(0,${height - marginBottom})`)
+    .attr('transform', `translate(30,${chartHeight - chartMargin.bottom})`)
     .call(d3.axisBottom(fx).tickSizeOuter(0))
     .call(g => g.selectAll('.domain').remove())
 
   // 處理 Y 軸效果
   svg.append('g')
-    .attr('transform', `translate(${marginLeft},0)`)
-    .call(d3.axisLeft(y).ticks(null, 's'))
+    .attr('transform', `translate(${20+chartMargin.left},10)`)
+    .call(d3.axisLeft(y).ticks(10, 's').tickFormat((d) => {
+      return `${d / 10000}萬`; // 設定中文格式
+    }))
     .call(g => g.selectAll('.domain').remove())
 
   // 設定 tooltip 事件
