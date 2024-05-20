@@ -165,7 +165,7 @@ onMounted (() => {
 
 <template>
   <div 
-    class="bg-#E4FAFF w-full md:w-400px max-h-200px md:max-h-none md:h-600px overflow-hidden relative">
+    class="bg-#E4FAFF w-full lg:min-w-400px lg:max-w-400px max-h-200px lg:max-h-none lg:h-600px overflow-hidden relative">
     <div
       v-if="SEARCH_CITY !== 'all'"
       class="absolute top-0 w-full left-0 cursor-pointer bg-white opacity-90 text-center py-2"
@@ -184,12 +184,12 @@ onMounted (() => {
       </g>
     </svg>
     <!-- 遮罩 -->
-    <div class="flex justify-center items-center md:hidden absolute top-0 left-0 w-full h-full bg-black/50 z-8">
+    <div class="flex justify-center items-center lg:hidden absolute top-0 left-0 w-full h-full bg-black/50 z-8">
       <button @click="openModal" class="text-white bg-#DA29A8 py-2 px-4 rounded-10px">進入地圖</button>
     </div>
   </div>
   <Modal v-model="modal" @update:modelValue="closeModal" :title="'台灣地圖'">
-    <section class="bg-#E4FAFF w-full md:w-400px max-70vh md:max-h-none md:h-600px overflow-hidden relative">
+    <section class="bg-#E4FAFF w-full lg:w-400px max-70vh md:max-h-none md:h-600px overflow-hidden relative">
       <svg
         ref="modalSvg"
         class="h-full w-full"

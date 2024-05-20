@@ -12,7 +12,7 @@ const { SEARCH_CITY, CURRENT_CITY_DATA } = storeToRefs(store)
 <template>
   <main>
     <MyHeader />
-    <div class="flex flex-col md:flex-row md:mt-66px mt-104px">
+    <div class="flex flex-col lg:flex-row md:mt-66px mt-104px">
       <!-- <TaiwanMap :vote-data="voteData" /> -->
       <TaiwanVoteMap />
       <!-- {{ CURRENT_CITY_DATA }} -->
