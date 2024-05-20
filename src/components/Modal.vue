@@ -25,7 +25,6 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const closeModal = () => {
-  console.log('closeModal')
   emit('update:modelValue', false)
 }
 

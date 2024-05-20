@@ -7,13 +7,16 @@ import { pathGenerator } from '@/utils/d3'
 import { yearColor } from '@/utils/share/variable'
 import { searchStore } from '@/stores'
 import { removeSpace } from '@/utils'
+import { useScreenWidth } from '@/composables/useScreenWidth'; // 確
 
+
+const { screenWidth } = useScreenWidth();
 // eslint-disable-next-line unused-imports/no-unused-vars
 const props = defineProps({
   svg: { type: Object },
 })
 
-const emits = defineEmits(['setCountyEmit'])
+const emits = defineEmits(['setCountyEmit','setMobileCountyEmit'])
 
 const SearchStore = searchStore()
 const { SEARCH_YEAR, SEARCH_CITY, TRIGGER_EVENT, CURRENT_VOTE_DATA } = storeToRefs(SearchStore)
@@ -80,10 +83,17 @@ const y = computed(() => (feature) => {
 function setTargetCounty(item) {
   const bounds = pathGenerator.bounds(item.geometry)
   TRIGGER_EVENT.value = 'click'
+  if(screenWidth.value <= 768){
+    return emits('setMobileCountyEmit', {
+      county_en: item.properties.county_en,
+      bounds,
+    })
+  }
   emits('setCountyEmit', {
     county_en: item.properties.county_en,
     bounds,
   })
+
 }
 
 // TODO:下拉選單觸發
@@ -91,11 +101,17 @@ watch(SEARCH_CITY, () => {
   if (TRIGGER_EVENT.value === 'select' && SEARCH_CITY.value !== 'all') {
     const targetCity = countyGeoData.features.find(item => item.properties.county_en === SEARCH_CITY.value)
     const bounds = pathGenerator.bounds(targetCity.geometry)
-
+    if(screenWidth.value <= 768){
+      return emits('setMobileCountyEmit', {
+        county_en: targetCity.properties.county_en,
+        bounds,
+      })
+    }
     emits('setCountyEmit', {
       county_en: targetCity.properties.county_en,
       bounds,
     })
+
   }
 })
 

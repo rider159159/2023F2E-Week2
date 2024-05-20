@@ -17,6 +17,50 @@ function zoomed(event,dom) {
     .attr('transform', transform)
 }
 
+function test(item,type='modal'){
+  const { county_en, bounds } = item
+  SEARCH_CITY.value = county_en
+  const dx = bounds[1][0] - bounds[0][0]
+  const dy = bounds[1][1] - bounds[0][1]
+
+  const x = (bounds[0][0] + bounds[1][0]) / 2
+  const y = (bounds[0][1] + bounds[1][1]) / 2
+  const scale = 0.9 / Math.max(dx / 400, dy / 600)
+
+  // 取得目前的縮放比例和平移量
+  const element = type == 'mounted'? svgElement.node() : modalSvgElement.node()
+  const currentTransform = d3.zoomTransform(element)
+  const currentScale = currentTransform.k
+  const currentTranslateX = currentTransform.x
+  const currentTranslateY = currentTransform.y
+
+  // 考慮目前的縮放比例，計算視窗寬度和高度
+  const scaledWidth = 400 / currentScale
+  const scaledHeight = 600 / currentScale
+
+  // 計算中心點的座標
+  const centerX = (scaledWidth / 2) - (currentTranslateX / currentScale)
+  const centerY = (scaledHeight / 2) - (currentTranslateY / currentScale)
+
+  // 根据中心点和新的缩放比例，计算平移量
+  const translateX = centerX - scale * x
+  const translateY = centerY - scale * y
+
+  // 根據中心點和新的縮放比例，計算平移量
+  const newTransform = d3.zoomIdentity.translate(translateX, translateY).scale(scale)
+
+  // 設定新的平移和縮放變換
+  if(type=='mounted'){
+    svgElement.transition()
+    .duration(300)
+    .call(zoom.transform, newTransform)
+  }else{
+    modalSvgElement.transition()
+    .duration(300)
+    .call(modalZoom.transform, newTransform)
+  }
+}
+
 function setCounty(item,type='mounted') {
   const { county_en, bounds } = item
   SEARCH_CITY.value = county_en
@@ -28,7 +72,8 @@ function setCounty(item,type='mounted') {
   const scale = 0.9 / Math.max(dx / 400, dy / 600)
 
   // 取得目前的縮放比例和平移量
-  const currentTransform = d3.zoomTransform(type=='mounted'?svgElement.node():modalSvgElement.node())
+  const element = type == 'mounted'? svgElement.node() : modalSvgElement.node()
+  const currentTransform = d3.zoomTransform(element)
   const currentScale = currentTransform.k
   const currentTranslateX = currentTransform.x
   const currentTranslateY = currentTransform.y
@@ -151,7 +196,7 @@ onMounted (() => {
         viewBox="0,0,400,600"
       >
         <g ref="modalG" class="g" stroke-width="0.1">
-          <County :svg="svg" @set-county-emit="(item)=>setCounty(item,'modal')" />
+          <County :svg="svg" @set-mobile-county-emit="(item)=>setCounty(item,'modal')" />
           <Town />
         </g>
       </svg>

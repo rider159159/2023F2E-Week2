@@ -5,7 +5,6 @@ import { storeToRefs } from 'pinia'
 import { numberWithCommas, toFixed2 } from '@/utils'
 import { drawBarChart } from '@/utils/d3'
 import { searchStore } from '@/stores'
-
 import { useScreenWidth } from '@/composables/useScreenWidth'; // 確
 
 
@@ -68,7 +67,6 @@ function CURRENT_PARTY_ARRAY_DATA(item) {
 
 function renderTableChart() {
   nextTick(()=>{
-    console.log(screenWidth)
     CURRENT_CITY_ARRAY_DATA.value.forEach((item, index) => {
       d3.select(`#chart-${index}`).selectAll('*').remove()
     })
@@ -119,9 +117,8 @@ watch(() => CURRENT_CITY_ARRAY_DATA.value, () => {
   renderTableChart()
 })
 
-function openModal(item) {
-  console.log(item)
-}
+// function openModal(item) {
+// }
 
 onMounted(() => {
   createTooltip()
@@ -217,7 +214,8 @@ onMounted(() => {
                 </div>
                 <svg :id="`chart-${index}`" class="bar-chart" />
               </div>
-              <img @click="openModal(item)" class="px-4" src="/navigate_next.svg" alt="">
+              <!-- @click="openModal(item)" -->
+              <img  class="px-4" src="/navigate_next.svg" alt="">
             </section>
           </td>
         </tr>
