@@ -12,7 +12,6 @@ function setupApp() {
   app.component('VueDatePicker', VueDatePicker)
   setupStore(app)
   setupRouter(app)
-  app.use(vfm)
   app.mount('#app')
 
 }
