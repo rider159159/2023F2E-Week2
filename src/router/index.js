@@ -4,14 +4,6 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      path: '/test',
-      name: 'test',
-      component: () => import('../views/test.vue'),
-      meta: {
-        keepAlive: false,
-      },
-    },
-    {
       path: '/vote',
       name: 'vote',
       component: () => import('../views/vote.vue'),

@@ -10,7 +10,6 @@ declare module 'vue' {
     AllVoteChart: typeof import('./src/components/section/AllVoteChart.vue')['default']
     Banner: typeof import('./src/components/section/Banner.vue')['default']
     BarChart: typeof import('./src/components/Chart/BarChart.vue')['default']
-    BarChat: typeof import('./src/components/BarChat.vue')['default']
     Candidate: typeof import('./src/components/section/Candidate.vue')['default']
     County: typeof import('./src/components/Map/County.vue')['default']
     Dropdown: typeof import('./src/components/Dropdown.vue')['default']
@@ -23,8 +22,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TableChart: typeof import('./src/components/Chart/TableChart.vue')['default']
-    TableChartTest: typeof import('./src/components/Chart/TableChartTest.vue')['default']
-    TaiwanMap: typeof import('./src/components/TaiwanMap.vue')['default']
     TaiwanVoteMap: typeof import('./src/components/Map/TaiwanVoteMap.vue')['default']
     Town: typeof import('./src/components/Map/Town.vue')['default']
   }
